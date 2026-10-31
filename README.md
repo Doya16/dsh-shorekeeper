@@ -2,9 +2,13 @@
   <img src="icon.png" width="192" height="192" alt="守岸人桌宠 Logo：角色与算力配额框，1145.14 为模拟值">
 </p>
 
-# 守岸人桌宠 · DeepSeek Harness 完整版插件
+# B站四百多人收藏的守岸人桌宠
+
+**DeepSeek Harness 完整版插件 · Windows**
 
 让守岸人陪你使用 **DeepSeek Harness**。任务进行时换表情，完成后用你挑选的语音和气泡回应。
+
+[B站视频：【DeepSeek x 鸣潮】守岸人来陪你了｜回应任务的自定义桌宠](https://www.bilibili.com/video/BV1tiHm6zEt9/)
 
 [下载插件](https://github.com/Doya16/dsh-shorekeeper/releases/latest) · [完整演示](https://github.com/Doya16/shorekeeper-deepseek-pet/releases/download/v0.5.1/shorekeeper-deepseek-landscape-v051-r2.mp4) · [开始使用](#开始使用) · [原独立安装版](https://github.com/Doya16/shorekeeper-deepseek-pet) · [收录申请](https://github.com/polang233/dsh-plugin-index/issues/158)
 
