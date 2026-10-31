@@ -15,7 +15,7 @@
 3. 点击窗口右下角 **守岸人桌宠 → 下载并安装完整版**。首次下载约 213 MiB，可选自动、GitHub 或镜像加速。
 4. 点击 **启动桌宠**。右键桌宠 → **设置…**，或从插件入口点击 **打开完整设置**。
 
-社区收录需由市场维护者审核，提交申请不代表已在市场上线。审核前可从本项目 Release 下载 `dsh-shorekeeper-1.1.0.tgz`，通过 Harness 插件安装入口安装；也可使用 CLI：
+[社区收录申请 #158](https://github.com/polang233/dsh-plugin-index/issues/158) 已提交，等待市场维护者审核，尚不代表已在市场上线。审核前可从本项目 Release 下载 `dsh-shorekeeper-1.1.0.tgz`，通过 Harness 插件安装入口安装；也可使用 CLI：
 
 ```powershell
 dsh plugin --profile desktop add C:\Downloads\dsh-shorekeeper-1.1.0.tgz
