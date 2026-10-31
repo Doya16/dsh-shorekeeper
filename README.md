@@ -74,11 +74,15 @@
 3. 点击窗口右下角 **守岸人桌宠 → 下载并安装完整版**。首次下载约 213 MiB，可选自动、GitHub 或镜像加速。
 4. 点击 **启动桌宠**。右键桌宠 → **设置…**，或从插件入口点击 **打开完整设置**。
 
-[社区收录申请 #158](https://github.com/polang233/dsh-plugin-index/issues/158) 已提交，等待市场维护者审核，尚不代表已在市场上线。可通过 [npm 包](https://www.npmjs.com/package/dsh-shorekeeper) 安装；插件入口约 0.6 MB，首次启动完整桌宠另需下载约 213 MiB。使用 Harness CLI：
+[社区收录申请 #158](https://github.com/polang233/dsh-plugin-index/issues/158) 已提交，等待市场维护者审核，尚不代表已在市场上线。[npm 包](https://www.npmjs.com/package/dsh-shorekeeper) 名称为 `dsh-shorekeeper`，当前版本 `1.1.1`，可通过 Harness 桌面客户端的插件管理安装。插件入口约 0.6 MB，首次启动完整桌宠另需下载约 213 MiB。
+
+独立 npm CLI 的用户可向自己的非 `desktop` 配置安装，例如：
 
 ```powershell
-dsh plugin --profile desktop add dsh-shorekeeper@1.1.1
+dsh plugin --profile shorekeeper add dsh-shorekeeper@1.1.1
 ```
+
+桌面客户端的 `desktop` 配置由客户端管理，不能用独立 npm CLI 直接修改。上面的 CLI 示例不会把插件装入桌面客户端。
 
 也可从 [Release](https://github.com/Doya16/dsh-shorekeeper/releases/tag/v1.1.1) 下载 `dsh-shorekeeper-1.1.1.tgz` 手动安装。安装后启用插件即可，无需另外安装旧版的连接插件。若同时运行原独立版，可能出现两只桌宠；按需要关闭其中一只。
 
