@@ -1,0 +1,1 @@
+"""Shorekeeper DeepSeek desktop companion."""

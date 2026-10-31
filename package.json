@@ -1,0 +1,60 @@
+{
+  "name": "dsh-shorekeeper",
+  "description": "守岸人 DeepSeek 完整桌宠：自选 GIF、语音字幕、交互工作室、字体外观、锁定穿透和完整配置迁移（Windows x64）",
+  "version": "1.1.0",
+  "author": "Doya16",
+  "homepage": "https://github.com/Doya16/dsh-shorekeeper#readme",
+  "bugs": {
+    "url": "https://github.com/Doya16/dsh-shorekeeper/issues"
+  },
+  "engines": {
+    "node": ">=22",
+    "dsh": ">=0.2.1-rc.5 <0.3.0"
+  },
+  "icon": "./icon.png",
+  "license": "MIT",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./package.json": "./package.json",
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./locale/*.json": "./locale/*.json"
+  },
+  "files": [
+    "lib/*.js",
+    "cordis.patch.yml",
+    "icon.png",
+    "locale/*.json",
+    "runtime-manifest.json",
+    "tools/extract-runtime.ps1",
+    "CREDITS.txt"
+  ],
+  "keywords": [
+    "dsh-plugin",
+    "deepseek-harness",
+    "shorekeeper",
+    "desktop-pet",
+    "wuthering-waves"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Doya16/dsh-shorekeeper.git"
+  },
+  "scripts": {
+    "test": "node --test test/*.test.js"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-renderer",
+        "@deepseek-ai/dsh-client-ui-layout"
+      ]
+    }
+  }
+}
