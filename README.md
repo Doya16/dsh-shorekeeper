@@ -1,8 +1,16 @@
+<p align="center">
+  <img src="icon.png" width="128" height="128" alt="守岸人桌宠 Logo：默认配置中的守岸人形象">
+</p>
+
 # 守岸人桌宠 · DeepSeek Harness 完整版插件
 
 让守岸人陪你使用 **DeepSeek Harness**。任务进行时换表情，完成后用你挑选的语音和气泡回应。
 
 [下载插件](https://github.com/Doya16/dsh-shorekeeper/releases/latest) · [完整演示](https://github.com/Doya16/shorekeeper-deepseek-pet/releases/download/v0.5.1/shorekeeper-deepseek-landscape-v051-r2.mp4) · [开始使用](#开始使用) · [原独立安装版](https://github.com/Doya16/shorekeeper-deepseek-pet) · [收录申请](https://github.com/polang233/dsh-plugin-index/issues/158)
+
+**任务有回应，陪伴可自定义。** 思考、查阅、编写、完成各有表情；为每个动作挑 GIF、声音和对应字幕。在一个设置窗口里调整大小、字体、静音、锁定穿透和余额显示，换电脑时连同配置与素材一起带走。
+
+**使用条件：** Windows 10/11 x64、本机 DeepSeek Harness；安装并启用插件后，从“守岸人桌宠”入口下载和启动完整版，无需安装 Python。
 
 ![守岸人 DeepSeek 桌宠：自选表情与语音互动](docs/social/cover-landscape.jpg)
 
@@ -180,6 +188,8 @@ dsh plugin --profile desktop add C:\Downloads\dsh-shorekeeper-1.1.0.tgz
 ## 素材来源与感谢
 
 表情包来自 [鸣潮表情包站](https://emoji.wuwa.games/)。表情包众筹 QQ 群：**1079834905**。
+
+本项目 [Logo / 插件图标](icon.png) 沿用默认配置中的守岸人形象；角色与表情包权利归原权利人所有。项目为非官方社区插件。
 
 感谢所有为该项目表情包众筹投资的守岸人厨子们。
 
