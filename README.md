@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Doya16/dsh-shorekeeper/v1.1.1/icon.png" width="192" height="192" alt="守岸人桌宠 Logo：角色与算力配额框，1145.14 为模拟值">
+  <img src="https://raw.githubusercontent.com/Doya16/dsh-shorekeeper/v1.1.2/icon.png" width="192" height="192" alt="守岸人桌宠 Logo：角色与算力配额框，1145.14 为模拟值">
 </p>
 
 # B站四百多人收藏的守岸人桌宠
@@ -10,7 +10,7 @@
 
 [B站视频：【DeepSeek x 鸣潮】守岸人来陪你了｜回应任务的自定义桌宠](https://www.bilibili.com/video/BV1tiHm6zEt9/)
 
-[下载插件](https://github.com/Doya16/dsh-shorekeeper/releases/latest) · [完整演示](https://github.com/Doya16/shorekeeper-deepseek-pet/releases/download/v0.5.1/shorekeeper-deepseek-landscape-v051-r2.mp4) · [开始使用](#开始使用) · [原独立安装版](https://github.com/Doya16/shorekeeper-deepseek-pet) · [收录申请](https://github.com/polang233/dsh-plugin-index/issues/158)
+[下载插件](https://www.npmjs.com/package/dsh-shorekeeper) · [完整演示](https://github.com/Doya16/shorekeeper-deepseek-pet/releases/download/v0.5.1/shorekeeper-deepseek-landscape-v051-r2.mp4) · [开始使用](#开始使用) · [原独立安装版](https://github.com/Doya16/shorekeeper-deepseek-pet) · [收录申请](https://github.com/polang233/dsh-plugin-index/issues/158)
 
 **任务有回应，陪伴可自定义。** 思考、查阅、编写、完成各有表情；为每个动作挑 GIF、声音和对应字幕。在一个设置窗口里调整大小、字体、静音、锁定穿透和余额显示，换电脑时连同配置与素材一起带走。
 
@@ -32,7 +32,7 @@
 
 视频及星空背景展示图沿用 **DeepSeek 独立版 v0.5.1** 的完整演示，时长 **03:17**；部分通用设置配图也沿用独立版，插件版完整设置截图列在下方。插件版保留其中的桌面功能，安装与启动请按下方步骤操作；视频中的创建桌面快捷方式不适用于插件版。**客户端窗口、对话、任务、余额和新版提醒为示例；桌宠与设置为实际界面。**
 
-**当前 v1.1.1：锁定悬停时角色与余额框一起淡化；导入配置会重置本机连接路径，移除失效的客户端启动与安装入口。**
+**当前插件 v1.1.2：首次安装并成功启动桌宠后，部署面板和悬浮入口自动隐藏；在 Harness「设置 → 守岸人桌宠」管理桌宠或恢复入口。市场图标已缩小至 256 KiB 限制内。完整版程序仍为 v1.1.1，无需重新下载。**
 
 | 时间 | 展示内容 |
 | --- | --- |
@@ -74,17 +74,23 @@
 3. 点击窗口右下角 **守岸人桌宠 → 下载并安装完整版**。首次下载约 213 MiB，可选自动、GitHub 或镜像加速。
 4. 点击 **启动桌宠**。右键桌宠 → **设置…**，或从插件入口点击 **打开完整设置**。
 
-[社区收录申请 #158](https://github.com/polang233/dsh-plugin-index/issues/158) 已提交，等待市场维护者审核，尚不代表已在市场上线。[npm 包](https://www.npmjs.com/package/dsh-shorekeeper) 名称为 `dsh-shorekeeper`，当前版本 `1.1.1`，可通过 Harness 桌面客户端的插件管理安装。插件入口约 0.6 MB，首次启动完整桌宠另需下载约 213 MiB。
+[社区收录申请 #158](https://github.com/polang233/dsh-plugin-index/issues/158) 已获收录。[npm 包](https://www.npmjs.com/package/dsh-shorekeeper) 名称为 `dsh-shorekeeper`，当前插件版本 `1.1.2`，可通过 Harness 桌面客户端的插件管理安装。插件入口小于 0.3 MB，首次启动完整桌宠另需下载约 213 MiB。市场的「已审查」标签绑定具体版本及哈希，新版需由维护者重新核对。
 
 独立 npm CLI 的用户可向自己的非 `desktop` 配置安装，例如：
 
 ```powershell
-dsh plugin --profile shorekeeper add dsh-shorekeeper@1.1.1
+dsh plugin --profile shorekeeper add dsh-shorekeeper@1.1.2
 ```
 
 桌面客户端的 `desktop` 配置由客户端管理，不能用独立 npm CLI 直接修改。上面的 CLI 示例不会把插件装入桌面客户端。
 
-也可从 [Release](https://github.com/Doya16/dsh-shorekeeper/releases/tag/v1.1.1) 下载 `dsh-shorekeeper-1.1.1.tgz` 手动安装。安装后启用插件即可，无需另外安装旧版的连接插件。若同时运行原独立版，可能出现两只桌宠；按需要关闭其中一只。
+安装后启用插件即可，无需另外安装旧版的连接插件。若同时运行原独立版，可能出现两只桌宠；按需要关闭其中一只。
+
+## 部署后隐藏入口
+
+首次安装并成功启动桌宠后，右下角的部署面板和「守岸人桌宠」按钮会一起自动隐藏，重启 Harness 后继续保持隐藏。面板内也可点击 **隐藏部署入口**。
+
+以后在 **Harness 设置 → 守岸人桌宠** 启动、关闭、打开完整设置或更新完整版；点击 **显示部署入口** 可恢复右下角按钮。主动恢复后不会再次自动隐藏。隐藏入口不会关闭桌宠或停用任务状态连接。
 
 ## 一个窗口调整所有设置
 
@@ -154,7 +160,7 @@ dsh plugin --profile shorekeeper add dsh-shorekeeper@1.1.1
 
 ## 检查更新与保留配置升级
 
-当前插件与完整程序版本：**v1.1.1**。右键 → **设置 → 版本与更新**，可开启或关闭启动检查、立即检查更新，或恢复已忽略版本的提醒。新版提示支持稍后提醒和忽略此版本；网络检查失败不会打断桌宠。
+当前插件版本 **v1.1.2**，完整程序版本 **v1.1.1**。本次只需更新 Harness 插件，现有完整程序和个人配置继续使用。右键 → **设置 → 版本与更新**，可开启或关闭完整程序的启动检查、立即检查更新，或恢复已忽略版本的提醒。新版提示支持稍后提醒和忽略此版本；网络检查失败不会打断桌宠。
 
 更新来源可选 **自动选择 / GitHub 官方源 / 镜像加速**。自动模式先尝试 GitHub，连接失败时切换 [GH-Proxy](https://gh-proxy.org/)；也可手动固定来源。镜像可能有同步延迟，可切回 GitHub 检查。
 
@@ -163,7 +169,7 @@ dsh plugin --profile shorekeeper add dsh-shorekeeper@1.1.1
 | 当前情况 | 如何操作 |
 | --- | --- |
 | 首次安装本插件 | 在 Harness 安装并启用插件，点击入口的“下载并安装完整版”，完成后启动 |
-| 已使用本插件，有新版本 | 更新 Harness 中的插件；入口提示完整程序有新版时，点击“更新完整版” |
+| 已使用本插件，有新版本 | 更新 Harness 中的插件；在 Harness「设置 → 守岸人桌宠」看到完整程序新版时，点击“更新完整版” |
 | 原独立版用户迁入 | 在原版导出配置素材 ZIP，安装本插件后，在“设置 → 保存与迁移”导入 |
 
 更新提醒不会自动安装程序。完整程序更新会保留个人设置、GIF、音频、字体和导出文件，并留下上一份程序目录供恢复。桌宠内的更新入口指向本插件仓库，原独立版继续通过自己的仓库更新。
@@ -190,14 +196,14 @@ dsh plugin --profile shorekeeper add dsh-shorekeeper@1.1.1
 - 面向 **Windows 10/11 x64 本机 DeepSeek Harness**；普通 DeepSeek 聊天网页、macOS、Linux 和远程服务器不在本版支持范围。
 - 验证环境为官方 Harness **0.2.1-rc.5**；安装插件后新开始的任务会出现在会话列表，以“DeepSeek 会话”编号显示。
 - “思考”表示任务处理阶段；气泡展示你设置的台词、字幕或已公开的任务进度。
-- 已验证实际读写任务、等待回应、多会话完成提醒、账户余额、完整设置、语音试听和配置迁移，详见 [测试记录](https://github.com/Doya16/dsh-shorekeeper/blob/v1.1.1/docs/VALIDATION.md)。
+- 完整程序的实际任务、账户余额和迁移验证，以及本次入口交互测试的具体范围，见 [测试记录](https://github.com/Doya16/dsh-shorekeeper/blob/v1.1.2/docs/VALIDATION.md)。
 - 首次下载完整程序约 213 MiB，无需 Python。下载完成会校验固定 SHA-256；数据与运行范围见 [说明](https://github.com/Doya16/dsh-shorekeeper/blob/v1.1.1/docs/SECURITY.md)。
 
 ## 素材来源与感谢
 
 表情包来自 [鸣潮表情包站](https://emoji.wuwa.games/)。表情包众筹 QQ 群：**1079834905**。
 
-本项目 [Logo / 插件图标](https://github.com/Doya16/dsh-shorekeeper/blob/v1.1.1/icon.png) 使用默认守岸人形象与底部配额框的实际界面截图；其中“算力配额：1145.14”为展示用模拟值。角色与表情包权利归原权利人所有。项目为非官方社区插件。
+本项目 [Logo / 插件图标](https://github.com/Doya16/dsh-shorekeeper/blob/v1.1.2/icon.png) 使用默认守岸人形象与底部配额框的实际界面截图；其中“算力配额：1145.14”为展示用模拟值。角色与表情包权利归原权利人所有。项目为非官方社区插件。
 
 感谢所有为该项目表情包众筹投资的守岸人厨子们。
 
@@ -205,7 +211,7 @@ dsh plugin --profile shorekeeper add dsh-shorekeeper@1.1.1
 
 ## 开发与验证
 
-完整环境、源码提交记录、打包产物及验证范围见 [构建说明](https://github.com/Doya16/dsh-shorekeeper/blob/v1.1.1/docs/BUILD.md)。
+完整环境、源码提交记录、打包产物及发布校验见 [构建说明](https://github.com/Doya16/dsh-shorekeeper/blob/v1.1.2/docs/BUILD.md)。
 
 ```powershell
 npm test

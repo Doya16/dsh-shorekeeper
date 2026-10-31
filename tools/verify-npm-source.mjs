@@ -37,6 +37,12 @@ export function verifyFiles(root, files) {
   if (differences.length) {
     throw new Error(`Package bytes differ from Git HEAD (including line endings): ${differences.join(', ')}`);
   }
+  if (pkg.icon) {
+    const icon = pkg.icon.replace(/^\.\//, '');
+    if (!files.some(file => file.path === icon)) throw new Error('Market icon is missing from the npm package.');
+    const bytes = readFileSync(resolve(root, icon));
+    if (!bytes.length || bytes.length > 256 * 1024) throw new Error('Market icon must be between 1 byte and 256 KiB.');
+  }
   return { gitHead: head, files: files.length, version: pkg.version };
 }
 

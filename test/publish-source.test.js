@@ -64,3 +64,12 @@ test('release verifier rejects a manually pinned stale gitHead', t => {
   git('commit', '-qm', 'stale metadata');
   assert.throws(() => verifyFiles(root, files), /Do not hard-code gitHead/);
 });
+
+test('release verifier rejects a committed market icon over 256 KiB', t => {
+  const { root, git, files } = fixture(t);
+  writeFileSync(join(root, 'package.json'), '{"name":"test-fixture","version":"1.0.0","icon":"./icon.png"}\n');
+  writeFileSync(join(root, 'icon.png'), Buffer.alloc(256 * 1024 + 1));
+  git('add', 'package.json', 'icon.png');
+  git('commit', '-qm', 'oversized icon');
+  assert.throws(() => verifyFiles(root, [...files, { path: 'icon.png' }]), /256 KiB/);
+});

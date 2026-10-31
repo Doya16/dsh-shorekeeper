@@ -5,6 +5,7 @@ import os
 from pathlib import Path
 import sys
 from unittest.mock import patch
+from PIL import Image
 
 os.environ['QT_QPA_PLATFORM'] = 'offscreen'
 os.environ['QT_SCALE_FACTOR'] = '1'
@@ -67,9 +68,14 @@ def main():
                 QRegion(), QWidget.RenderFlag.DrawChildren)
         finally:
             painter.end()
+        original = ROOT / 'docs/images/logo-full.png'
+        original.parent.mkdir(parents=True, exist_ok=True)
+        assert image.save(str(original))
         destination = ROOT / 'icon.png'
-        assert image.save(str(destination))
-        print(json.dumps({'file': str(destination), 'size': [1024, 1024],
+        with Image.open(original) as source:
+            source.convert('RGBA').resize((512, 512), Image.Resampling.LANCZOS).save(destination, optimize=True)
+        assert destination.stat().st_size <= 256 * 1024, 'Market icon exceeds 256 KiB'
+        print(json.dumps({'file': str(destination), 'size': [512, 512], 'bytes': destination.stat().st_size,
             'label': DEMO_LABEL, 'asset': pet.animation_id, 'demo_only': True}, ensure_ascii=False))
     finally:
         pet.voice.stop()
