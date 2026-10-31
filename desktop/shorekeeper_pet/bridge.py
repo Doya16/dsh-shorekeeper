@@ -5,9 +5,7 @@ import json, os, pathlib, time
 from decimal import Decimal, InvalidOperation
 from .paths import ROOT, DSH_HOME
 
-def discover_deepseek(explicit=''):
-    if explicit:
-        p=pathlib.Path(explicit); return str(p) if p.is_file() else None
+def discover_deepseek():
     for base in (os.environ.get('LOCALAPPDATA',''),os.environ.get('ProgramFiles','')):
         for suffix in ('Programs/DeepSeek Harness/DeepSeek Harness.exe','DeepSeek Harness/DeepSeek Harness.exe'):
             p=pathlib.Path(base)/suffix
@@ -51,8 +49,8 @@ def balance_label(data,compact=False):
     return f"算力余额：{'¥' if currency=='CNY' else '$'}{amount}"+(' *' if stale else '')
 
 class RateClient:
-    def __init__(self,executable='',deepseek_home=''):
-        self.executable=executable; self.deepseek_home=deepseek_home; self.closed=threading.Event()
+    def __init__(self,deepseek_home=''):
+        self.deepseek_home=deepseek_home; self.closed=threading.Event()
     def read(self,timeout=25):
         home=pathlib.Path(self.deepseek_home or DSH_HOME)
         unavailable=dict(error='请打开 DeepSeek Harness 并安装桌宠连接插件',source='unavailable')

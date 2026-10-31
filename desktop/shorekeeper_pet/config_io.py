@@ -7,8 +7,10 @@ from .paths import EXECUTABLE_NAME,PORTABLE_DIRNAME
 def migrate_settings(settings):
     result=copy.deepcopy(settings); version=result.get('schema_version',0)
     options=result.setdefault('appearance',{})
+    if not isinstance(options,dict): options={}; result['appearance']=options
     # Codex appearance/media imports work without carrying its connection settings.
-    for key in ('codex_home','codex_executable','launch_with_codex'):
+    # The market edition no longer launches a configurable client executable.
+    for key in ('codex_home','codex_executable','launch_with_codex','deepseek_executable'):
         options.pop(key,None)
     legacy=not isinstance(version,int) or version<7; result['schema_version']=7
     options=result.setdefault('appearance',{})
@@ -26,6 +28,18 @@ def migrate_settings(settings):
                 binding['bubble_mode']='audio'
     return result
 
+def imported_settings(settings):
+    """Reset machine-local routing only when accepting an external profile.
+
+    Ordinary startup still uses migrate_settings, preserving a data directory
+    explicitly selected on this computer. JSON and ZIP imports share this rule.
+    """
+    if not isinstance(settings,dict): raise ValueError('配置格式不正确')
+    result=migrate_settings(settings)
+    result['appearance']['deepseek_home']=''
+    result['thread']='auto'; result.pop('position',None)
+    return result
+
 def save_atomic(path,data,backup=True):
     path=pathlib.Path(path); path.parent.mkdir(parents=True,exist_ok=True)
     if backup and path.is_file(): shutil.copy2(path,path.with_suffix('.json.bak'))
@@ -35,7 +49,7 @@ def save_atomic(path,data,backup=True):
     temp.replace(path)
 
 def bundle_payload(settings,root,portable=False):
-    root=pathlib.Path(root); result=migrate_settings(settings)
+    root=pathlib.Path(root); result=imported_settings(settings)
     files={}; warnings=[]
     for folder in ('assets','fonts','licenses','defaults'):
         for file in (root/folder).rglob('*'):
@@ -78,9 +92,6 @@ def bundle_payload(settings,root,portable=False):
         elif binding.get('audio_file'):
             binding['audio_file']=collect_audio(binding['audio_file'],state)
     options['audio_directory']='audio'
-    if portable:
-        result['thread']='auto'; result.pop('position',None)
-        options['deepseek_home']=''; options['deepseek_executable']=''
     return result,files,warnings
 
 def export_bundle(destination,settings,root,portable=False):
@@ -94,7 +105,7 @@ def export_bundle(destination,settings,root,portable=False):
             if file.is_file():files[file.relative_to(runtime).as_posix()]=file
         for file in (runtime/'_internal').rglob('*'):
             if file.is_file(): files[file.relative_to(runtime).as_posix()]=file
-        for name in ('README.md','MIGRATION.txt','THIRD_PARTY.txt','requirements.txt','LICENSE','tools/run_pet.py'):
+        for name in ('README.md','MIGRATION.txt','THIRD_PARTY.txt','requirements.txt','LICENSE','BUILD_INFO.json','tools/run_pet.py'):
             if (root/name).is_file(): files[name]=root/name
         for file in (root/'shorekeeper_pet').glob('*.py'): files[file.relative_to(root).as_posix()]=file
         for file in (root/'docs').rglob('*'):
@@ -124,6 +135,7 @@ def import_bundle(source,root):
         if z.getinfo('settings.json').file_size>2_000_000 or z.getinfo('manifest.json').file_size>5_000_000: raise ValueError('配置文件过大')
         manifest=json.loads(z.read('manifest.json')); settings=json.loads(z.read('settings.json'))
         if manifest.get('format') not in ('shorekeeper-profile','shorekeeper-portable') or not isinstance(settings,dict): raise ValueError('不是守岸人配置包')
+        settings=imported_settings(settings)
         allowed={'fonts':{'.ttf','.otf','.ttc','.txt','.json'},'audio':AUDIO_EXTS|{'.txt'},'assets':{'.gif','.webp','.jpg','.jpeg','.json','.ico','.png'},'licenses':{'.txt'},'defaults':AUDIO_EXTS|{'.txt','.json'}}
         prepared=[]
         for name in names:
@@ -138,4 +150,4 @@ def import_bundle(source,root):
     for dest,data in prepared:
         dest.parent.mkdir(parents=True,exist_ok=True)
         tmp=dest.with_name(dest.name+'.importing'); tmp.write_bytes(data); tmp.replace(dest)
-    return migrate_settings(settings)
+    return settings

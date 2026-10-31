@@ -12,7 +12,7 @@ from .studio import BindingEditor
 from .preferences import Preferences
 from .appearance import appearance,load_fonts,stylesheet,font
 from .audio_player import VoicePlayer
-from .config_io import save_atomic,migrate_settings
+from .config_io import save_atomic,migrate_settings,imported_settings
 from .renderer import PetRenderer,SpeechBubble
 from .binding_editor import TRIGGERS
 from .paths import VERSION,DSH_HOME
@@ -126,7 +126,7 @@ class Pet(PetRenderer,QWidget):
         self.notifications=collections.deque(); self.notification=None; self.notification_until=0; self.notification_seen=set()
         self.quota_data={}; self.thread_list=[]; self.panel=None; self.binding_editor=None
         self.monitor=Monitor(self.options['deepseek_home'] or DSH_HOME); self.monitor.selected=self.settings.get('thread','auto')
-        self.rate_client=RateClient(self.options['deepseek_executable'],self.options['deepseek_home']); self.worker=BridgeWorker(); self.stop_event=threading.Event(); self.refresh_event=threading.Event()
+        self.rate_client=RateClient(deepseek_home=self.options['deepseek_home']); self.worker=BridgeWorker(); self.stop_event=threading.Event(); self.refresh_event=threading.Event()
         from .quota_refresh import QuotaRefresh
         self.quota_refresh=QuotaRefresh(self.refresh_event)
         self.worker.quota_read.connect(self.on_quota_read)
@@ -241,15 +241,15 @@ class Pet(PetRenderer,QWidget):
         while not self.stop_event.is_set():
             ticket=self.quota_refresh.begin_read()
             try:
-                if (self.rate_client.executable,self.rate_client.deepseek_home)!=(self.options['deepseek_executable'],self.options['deepseek_home']):
-                    self.rate_client.close(); self.rate_client=RateClient(self.options['deepseek_executable'],self.options['deepseek_home'])
+                if self.rate_client.deepseek_home!=self.options['deepseek_home']:
+                    self.rate_client.close(); self.rate_client=RateClient(deepseek_home=self.options['deepseek_home'])
                 self.worker.quota_read.emit(ticket,self.rate_client.read())
             except Exception:
                 self.worker.quota_read.emit(ticket,dict(error='刷新暂时失败，显示最近记录。'))
             self.refresh_event.wait(120)
 
     def refresh_quota(self):
-        self.quota_refresh.request((self.options['deepseek_executable'],self.options['deepseek_home']))
+        self.quota_refresh.request(self.options['deepseek_home'])
         self.update()
 
     def quota_display_label(self):
@@ -571,7 +571,7 @@ class Pet(PetRenderer,QWidget):
             if dialog: dialog.apply_style()
 
     def apply_settings(self,data):
-        data=migrate_settings(data)
+        data=imported_settings(data)
         self.voice.stop()
         if not self.offline:
             from .startup import configure
@@ -630,12 +630,6 @@ class Pet(PetRenderer,QWidget):
 
     def open_panel(self): self.open_preferences()
 
-    def open_deepseek(self):
-        import subprocess
-        from .bridge import discover_deepseek
-        executable=discover_deepseek(self.options['deepseek_executable'])
-        if executable: subprocess.Popen([executable])
-
     def toggle_visible(self):
         if self.isVisible(): self.hide()
         else: self.show(); self.raise_()
@@ -668,10 +662,10 @@ def main():
         return 0 if report['ok'] else 1
     if args.verify_connection:
         from .bridge import discover_deepseek
-        opts=appearance(load_settings()); monitor=Monitor(opts['deepseek_home'] or DSH_HOME); client=RateClient(opts['deepseek_executable'],opts['deepseek_home'])
+        opts=appearance(load_settings()); monitor=Monitor(opts['deepseek_home'] or DSH_HOME); client=RateClient(deepseek_home=opts['deepseek_home'])
         try:
             status=monitor.poll(); quota=client.read()
-            report=dict(version=VERSION,frozen=bool(getattr(sys,'frozen',False)),deepseek_detected=bool(discover_deepseek(opts['deepseek_executable'])),quota_available=bool(quota.get('wallets')),thread_count=len(monitor.threads),state=status['state'],follow=monitor.selected)
+            report=dict(version=VERSION,frozen=bool(getattr(sys,'frozen',False)),deepseek_detected=bool(discover_deepseek()),quota_available=bool(quota.get('wallets')),thread_count=len(monitor.threads),state=status['state'],follow=monitor.selected)
             (ROOT/'connection-check.json').write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf8')
             return 0 if report['deepseek_detected'] and report['quota_available'] else 1
         finally: client.close()
@@ -720,6 +714,11 @@ def main():
                 safety_controls=all(key in pet.preferences.controls for key in ('audio_muted','interaction_locked'))
                 from .settings_checks import verify_controls
                 interaction_checks=verify_controls(pet)
+                external=json.loads(json.dumps(saved_settings))
+                external.setdefault('appearance',{}).update(deepseek_home='foreign-import-home',deepseek_executable='foreign-import.exe')
+                pet.apply_settings(external)
+                interaction_checks['import_connection_isolated']=pet.options['deepseek_home']=='' and 'deepseek_executable' not in pet.options
+                interaction_checks['no_client_executable_control']='deepseek_executable' not in pet.preferences.controls
                 desktop_detected=bool(deepseek_processes())
                 report=dict(ok=all(interaction_checks.values()) and unified_settings and safety_controls and len(pet.font_families)>=2 and decoder_ok and output_ok and bubble_bounds and audio_mode and resize_controls and frequency_controls and startup_control and update_controls,unified_settings=unified_settings,safety_controls=safety_controls,update_controls=update_controls,audio_decoder=decoder_ok,audio_output=output_ok,bubble_bounds=bubble_bounds,audio_subtitle_mode=audio_mode,resize_controls=resize_controls,voice_frequency_controls=frequency_controls,startup_control=startup_control,desktop_detected=desktop_detected,version=VERSION,fonts=pet.font_families,assets=len(ASSETS),bindings=len(pet.bindings.overrides),root=str(ROOT),frozen=bool(getattr(sys,'frozen',False)),scale=pet.requested_scale,size_control_percent=pet.preferences.size_control.percent.value())
                 report.update(interaction_checks)

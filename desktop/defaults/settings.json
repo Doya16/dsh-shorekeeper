@@ -484,7 +484,6 @@
     "audio_cooldown": 8,
     "audio_directory": "defaults/audio",
     "deepseek_home": "",
-    "deepseek_executable": "",
     "launch_with_deepseek": false,
     "audio_muted": false,
     "interaction_locked": false,

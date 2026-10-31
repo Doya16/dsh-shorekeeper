@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="icon.png" width="192" height="192" alt="守岸人桌宠 Logo：角色与算力配额框，1145.14 为模拟值">
+  <img src="https://raw.githubusercontent.com/Doya16/dsh-shorekeeper/v1.1.1/icon.png" width="192" height="192" alt="守岸人桌宠 Logo：角色与算力配额框，1145.14 为模拟值">
 </p>
 
 # B站四百多人收藏的守岸人桌宠
@@ -16,9 +16,9 @@
 
 **使用条件：** Windows 10/11 x64、本机 DeepSeek Harness；安装并启用插件后，从“守岸人桌宠”入口下载和启动完整版，无需安装 Python。
 
-![守岸人 DeepSeek 桌宠：自选表情与语音互动](docs/social/cover-landscape.jpg)
+![守岸人 DeepSeek 桌宠：自选表情与语音互动](https://raw.githubusercontent.com/Doya16/dsh-shorekeeper/v1.1.1/docs/social/cover-landscape.jpg)
 
-[横屏封面](docs/social/cover-landscape.jpg) · [4:3 封面](docs/social/cover-4x3.jpg) · [竖屏封面](docs/social/cover-portrait.jpg)
+[横屏封面](https://github.com/Doya16/dsh-shorekeeper/blob/v1.1.1/docs/social/cover-landscape.jpg) · [4:3 封面](https://github.com/Doya16/dsh-shorekeeper/blob/v1.1.1/docs/social/cover-4x3.jpg) · [竖屏封面](https://github.com/Doya16/dsh-shorekeeper/blob/v1.1.1/docs/social/cover-portrait.jpg)
 
 这是原 [守岸人 DeepSeek 桌宠](https://github.com/Doya16/shorekeeper-deepseek-pet) 的 **Harness 完整版插件**：保留完整桌面功能，在 Harness 中安装和启动，移除创建桌面快捷方式。原独立安装版继续保留，可按使用习惯选择。
 
@@ -26,13 +26,13 @@
 
 ## 效果预览
 
-![任务互动、锁定穿透与余额刷新](docs/social/showcase.gif)
+![任务互动、锁定穿透与余额刷新](https://raw.githubusercontent.com/Doya16/dsh-shorekeeper/v1.1.1/docs/social/showcase.gif)
 
 [横屏演示 · 1920×1080](https://github.com/Doya16/shorekeeper-deepseek-pet/releases/download/v0.5.1/shorekeeper-deepseek-landscape-v051-r2.mp4) · [竖屏演示 · 1080×1920](https://github.com/Doya16/shorekeeper-deepseek-pet/releases/download/v0.5.1/shorekeeper-deepseek-portrait-v051-r2.mp4)
 
 视频及星空背景展示图沿用 **DeepSeek 独立版 v0.5.1** 的完整演示，时长 **03:17**；部分通用设置配图也沿用独立版，插件版完整设置截图列在下方。插件版保留其中的桌面功能，安装与启动请按下方步骤操作；视频中的创建桌面快捷方式不适用于插件版。**客户端窗口、对话、任务、余额和新版提醒为示例；桌宠与设置为实际界面。**
 
-**本插件 v1.1.0 已包含后续修正：锁定悬停时，角色与底部余额框一起淡化，点击余额框仍可刷新。**
+**当前 v1.1.1：锁定悬停时角色与余额框一起淡化；导入配置会重置本机连接路径，移除失效的客户端启动与安装入口。**
 
 | 时间 | 展示内容 |
 | --- | --- |
@@ -47,11 +47,11 @@
 | 02:53 | 保存配置与完整迁移 |
 | 03:09 | 原独立版下载介绍；本插件安装见下文 |
 
-![一个会话完成时，另一个继续编辑](docs/social/multi-project.jpg)
+![一个会话完成时，另一个继续编辑](https://raw.githubusercontent.com/Doya16/dsh-shorekeeper/v1.1.1/docs/social/multi-project.jpg)
 
 | 锁定、淡化与点击穿透 | 底部余额框刷新反馈 |
 | --- | --- |
-| ![悬停小锁与点击穿透，独立版 v0.5.1 演示画面](docs/social/lock-click-through.jpg) | ![余额框内显示刷新中](docs/social/balance-refresh.jpg) |
+| ![悬停小锁与点击穿透，独立版 v0.5.1 演示画面](https://raw.githubusercontent.com/Doya16/dsh-shorekeeper/v1.1.1/docs/social/lock-click-through.jpg) | ![余额框内显示刷新中](https://raw.githubusercontent.com/Doya16/dsh-shorekeeper/v1.1.1/docs/social/balance-refresh.jpg) |
 
 ## 可以做什么
 
@@ -74,19 +74,19 @@
 3. 点击窗口右下角 **守岸人桌宠 → 下载并安装完整版**。首次下载约 213 MiB，可选自动、GitHub 或镜像加速。
 4. 点击 **启动桌宠**。右键桌宠 → **设置…**，或从插件入口点击 **打开完整设置**。
 
-[社区收录申请 #158](https://github.com/polang233/dsh-plugin-index/issues/158) 已提交，等待市场维护者审核，尚不代表已在市场上线。审核前可下载 [插件安装包（新版 Logo）](https://github.com/Doya16/dsh-shorekeeper/releases/download/v1.1.0/dsh-shorekeeper-1.1.0-logo.tgz)，通过 Harness 插件安装入口安装；也可使用 CLI：
+[社区收录申请 #158](https://github.com/polang233/dsh-plugin-index/issues/158) 已提交，等待市场维护者审核，尚不代表已在市场上线。可通过 [npm 包](https://www.npmjs.com/package/dsh-shorekeeper) 安装；插件入口约 0.6 MB，首次启动完整桌宠另需下载约 213 MiB。使用 Harness CLI：
 
 ```powershell
-dsh plugin --profile desktop add C:\Downloads\dsh-shorekeeper-1.1.0-logo.tgz
+dsh plugin --profile desktop add dsh-shorekeeper@1.1.1
 ```
 
-安装后启用插件即可，无需另外安装旧版的连接插件。若同时运行原独立版，可能出现两只桌宠；按需要关闭其中一只。
+也可从 [Release](https://github.com/Doya16/dsh-shorekeeper/releases/tag/v1.1.1) 下载 `dsh-shorekeeper-1.1.1.tgz` 手动安装。安装后启用插件即可，无需另外安装旧版的连接插件。若同时运行原独立版，可能出现两只桌宠；按需要关闭其中一只。
 
 ## 一个窗口调整所有设置
 
 右键桌宠或托盘 → **设置…**，在同一个窗口调整 **字体与大小、交互工作室、桌面与声音、保存与迁移、连接 DeepSeek、版本与更新**。也可点击 Harness 插件入口中的 **打开完整设置**。
 
-![插件版完整设置与实时大小预览](docs/images/full-settings.png)
+![插件版完整设置与实时大小预览](https://raw.githubusercontent.com/Doya16/dsh-shorekeeper/v1.1.1/docs/images/full-settings.png)
 
 ## 完整自定义
 
@@ -108,13 +108,13 @@ dsh plugin --profile desktop add C:\Downloads\dsh-shorekeeper-1.1.0-logo.tgz
 
 支持 GIF、动画 WebP、PNG、JPG/JPEG、静态 WebP；音频支持 WAV、MP3、OGG、FLAC、M4A、AAC；字体支持 TTF、OTF、TTC。同名 UTF-8 TXT 可随音频导入为台词。不添加音频也能使用。
 
-![GIF 素材与交互工作室](docs/images/full-studio.png)
+![GIF 素材与交互工作室](https://raw.githubusercontent.com/Doya16/dsh-shorekeeper/v1.1.1/docs/images/full-studio.png)
 
-![动画循环、速度与播完后的切换设置](docs/demo/playback-panel.png)
+![动画循环、速度与播完后的切换设置](https://raw.githubusercontent.com/Doya16/dsh-shorekeeper/v1.1.1/docs/demo/playback-panel.png)
 
-![多语音与逐条配对字幕](docs/images/paired-voices.png)
+![多语音与逐条配对字幕](https://raw.githubusercontent.com/Doya16/dsh-shorekeeper/v1.1.1/docs/images/paired-voices.png)
 
-![每次、每次启动一次或偶尔播放的语音触发设置](docs/demo/voice-frequency.png)
+![每次、每次启动一次或偶尔播放的语音触发设置](https://raw.githubusercontent.com/Doya16/dsh-shorekeeper/v1.1.1/docs/demo/voice-frequency.png)
 
 ## 大小、气泡与字体
 
@@ -122,7 +122,7 @@ dsh plugin --profile desktop add C:\Downloads\dsh-shorekeeper-1.1.0-logo.tgz
 
 已内置 **站酷快乐体、霞鹜文楷**，可以添加自己的本地字体文件。气泡文字自动换行，内容较长时向下延伸；选择“自定义音频+字幕”后，气泡显示本次选中音频对应的台词。
 
-![桌宠、气泡与底栏尺寸预览](docs/social/size-preview.jpg)
+![桌宠、气泡与底栏尺寸预览](https://raw.githubusercontent.com/Doya16/dsh-shorekeeper/v1.1.1/docs/social/size-preview.jpg)
 
 ## 静音、锁定与余额刷新
 
@@ -133,7 +133,7 @@ dsh plugin --profile desktop add C:\Downloads\dsh-shorekeeper-1.1.0-logo.tgz
 - **余额刷新**：鼠标移到框内显示手形，点击后框内显示 **刷新中…**。成功后恢复最新数值；失败时短暂显示 **刷新失败**，随后保留最近读数。重复点击不会叠加请求。
 - **关闭程序**：右键菜单选择 **关闭守岸人**。也可从 Harness 的桌宠入口关闭。
 
-![桌面与声音设置](docs/demo/unified-settings.png)
+![桌面与声音设置](https://raw.githubusercontent.com/Doya16/dsh-shorekeeper/v1.1.1/docs/demo/unified-settings.png)
 
 ## 图标、声音与托盘
 
@@ -150,11 +150,11 @@ dsh plugin --profile desktop add C:\Downloads\dsh-shorekeeper-1.1.0-logo.tgz
 
 ## 检查更新与保留配置升级
 
-当前插件与完整程序版本：**v1.1.0**。右键 → **设置 → 版本与更新**，可开启或关闭启动检查、立即检查更新，或恢复已忽略版本的提醒。新版提示支持稍后提醒和忽略此版本；网络检查失败不会打断桌宠。
+当前插件与完整程序版本：**v1.1.1**。右键 → **设置 → 版本与更新**，可开启或关闭启动检查、立即检查更新，或恢复已忽略版本的提醒。新版提示支持稍后提醒和忽略此版本；网络检查失败不会打断桌宠。
 
 更新来源可选 **自动选择 / GitHub 官方源 / 镜像加速**。自动模式先尝试 GitHub，连接失败时切换 [GH-Proxy](https://gh-proxy.org/)；也可手动固定来源。镜像可能有同步延迟，可切回 GitHub 检查。
 
-![版本与更新设置](docs/demo/update-settings.png)
+![版本与更新设置](https://raw.githubusercontent.com/Doya16/dsh-shorekeeper/v1.1.1/docs/demo/update-settings.png)
 
 | 当前情况 | 如何操作 |
 | --- | --- |
@@ -166,7 +166,7 @@ dsh plugin --profile desktop add C:\Downloads\dsh-shorekeeper-1.1.0-logo.tgz
 
 ## 保存与换电脑
 
-![GIF、声音、字体与配置一起打包](docs/social/portable-profile.jpg)
+![GIF、声音、字体与配置一起打包](https://raw.githubusercontent.com/Doya16/dsh-shorekeeper/v1.1.1/docs/social/portable-profile.jpg)
 
 设置自动保存。请在 **设置 → 保存与迁移** 导出：
 
@@ -179,27 +179,29 @@ dsh plugin --profile desktop add C:\Downloads\dsh-shorekeeper-1.1.0-logo.tgz
 
 也可导入 Codex 版的配置素材包，继续使用自己的表情、声音、字幕和字体。新电脑需要安装并登录 Harness、启用本插件，连接路径会重新适配。
 
-![完整保存与迁移功能](docs/images/save-and-migrate.png)
+![完整保存与迁移功能](https://raw.githubusercontent.com/Doya16/dsh-shorekeeper/v1.1.1/docs/images/save-and-migrate.png)
 
 ## 适用范围与验证
 
 - 面向 **Windows 10/11 x64 本机 DeepSeek Harness**；普通 DeepSeek 聊天网页、macOS、Linux 和远程服务器不在本版支持范围。
 - 验证环境为官方 Harness **0.2.1-rc.5**；安装插件后新开始的任务会出现在会话列表，以“DeepSeek 会话”编号显示。
 - “思考”表示任务处理阶段；气泡展示你设置的台词、字幕或已公开的任务进度。
-- 已验证实际读写任务、等待回应、多会话完成提醒、账户余额、完整设置、语音试听和配置迁移，详见 [测试记录](docs/VALIDATION.md)。
-- 首次下载完整程序约 213 MiB，无需 Python。下载完成会校验固定 SHA-256；数据与运行范围见 [说明](docs/SECURITY.md)。
+- 已验证实际读写任务、等待回应、多会话完成提醒、账户余额、完整设置、语音试听和配置迁移，详见 [测试记录](https://github.com/Doya16/dsh-shorekeeper/blob/v1.1.1/docs/VALIDATION.md)。
+- 首次下载完整程序约 213 MiB，无需 Python。下载完成会校验固定 SHA-256；数据与运行范围见 [说明](https://github.com/Doya16/dsh-shorekeeper/blob/v1.1.1/docs/SECURITY.md)。
 
 ## 素材来源与感谢
 
 表情包来自 [鸣潮表情包站](https://emoji.wuwa.games/)。表情包众筹 QQ 群：**1079834905**。
 
-本项目 [Logo / 插件图标](icon.png) 使用默认守岸人形象与底部配额框的实际界面截图；其中“算力配额：1145.14”为展示用模拟值。角色与表情包权利归原权利人所有。项目为非官方社区插件。
+本项目 [Logo / 插件图标](https://github.com/Doya16/dsh-shorekeeper/blob/v1.1.1/icon.png) 使用默认守岸人形象与底部配额框的实际界面截图；其中“算力配额：1145.14”为展示用模拟值。角色与表情包权利归原权利人所有。项目为非官方社区插件。
 
 感谢所有为该项目表情包众筹投资的守岸人厨子们。
 
-程序代码采用 [MIT](LICENSE)；角色、表情包、语音与字体遵循各自的许可，详见 [素材说明](CREDITS.txt) 和 [第三方说明](desktop/THIRD_PARTY.txt)。
+程序代码采用 [MIT](https://github.com/Doya16/dsh-shorekeeper/blob/v1.1.1/LICENSE)；角色、表情包、语音与字体遵循各自的许可，详见 [素材说明](https://github.com/Doya16/dsh-shorekeeper/blob/v1.1.1/CREDITS.txt) 和 [第三方说明](https://github.com/Doya16/dsh-shorekeeper/blob/v1.1.1/desktop/THIRD_PARTY.txt)。
 
 ## 开发与验证
+
+完整环境、源码提交记录、打包产物及验证范围见 [构建说明](https://github.com/Doya16/dsh-shorekeeper/blob/v1.1.1/docs/BUILD.md)。
 
 ```powershell
 npm test
@@ -212,4 +214,4 @@ python tools/package-runtime.py
 npm pack
 ```
 
-`desktop/` 是完整版源代码和默认素材；`lib/` 是 Harness 连接与启动入口。上游版本记录在 [UPSTREAM.json](desktop/UPSTREAM.json)。构建出的程序和 ZIP 不提交到 Git，发布为 Release 附件。
+`desktop/` 是完整版源代码和默认素材；`lib/` 是 Harness 连接与启动入口。上游版本记录在 [UPSTREAM.json](https://github.com/Doya16/dsh-shorekeeper/blob/v1.1.1/desktop/UPSTREAM.json)。构建出的程序和 ZIP 不提交到 Git，发布为 Release 附件。

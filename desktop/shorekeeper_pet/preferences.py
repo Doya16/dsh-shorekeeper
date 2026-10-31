@@ -69,8 +69,7 @@ class Preferences(QDialog):
         self.sessions=QComboBox(); self.sessions.currentIndexChanged.connect(self.select_thread); connect.addRow('跟随的会话',self.sessions)
         note=QLabel('推荐自动跟随最近活动。固定到已结束的旧会话后，其他会话的思考、查阅和编辑动画不会触发。'); note.setWordWrap(True); connect.addRow(note)
         row,self.deepseek_home=self.path_control('deepseek_home','选择 DeepSeek 数据目录',True); connect.addRow('数据目录',row)
-        row,self.deepseek_exe=self.path_control('deepseek_executable','选择 DeepSeek Harness.exe',False); connect.addRow('DeepSeek 程序',row)
-        note=QLabel('留空即可自动检测：数据目录使用 DSH_HOME 或当前用户的 .dsh；程序从官方默认安装位置查找。新电脑请先安装并登录 DeepSeek。'); note.setWordWrap(True); connect.addRow(note)
+        note=QLabel('数据目录留空时，使用启动本桌宠的 Harness 数据目录（DSH_HOME）或当前用户的 .dsh。导入配置后会重置此路径；需要时可在本机重新选择。'); note.setWordWrap(True); connect.addRow(note)
         reconnect=QPushButton('应用连接并刷新余额'); reconnect.clicked.connect(pet.refresh_quota); connect.addRow(reconnect)
         self.connection_status=QLabel(); self.connection_status.setWordWrap(True); connect.addRow(self.connection_status)
         updates=self.tab('版本与更新')
@@ -94,15 +93,6 @@ class Preferences(QDialog):
 
     def tab(self,title):
         scroll=QScrollArea(); scroll.setWidgetResizable(True); body=QWidget(); body.setObjectName('settingsBody'); form=QFormLayout(body); form.setContentsMargins(16,18,16,18); form.setSpacing(16); form.setRowWrapPolicy(QFormLayout.RowWrapPolicy.WrapLongRows); form.setFieldGrowthPolicy(QFormLayout.FieldGrowthPolicy.AllNonFixedFieldsGrow); scroll.setWidget(body); self.tabs.addTab(scroll,title); return form
-    def install_bridge(self):
-        from .integration_setup import install
-        self.status.setText('正在安装连接插件…')
-        for button in self.buttons: button.setEnabled(False)
-        options=dict(self.pet.options)
-        def run():
-            try:self.jobs.finished.emit(install(options))
-            except Exception as error:self.jobs.failed.emit(str(error))
-        threading.Thread(target=run,daemon=True).start()
     def combo(self,key,names):
         control=QComboBox()
         for name in names: control.addItem(name,name)

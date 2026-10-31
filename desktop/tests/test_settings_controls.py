@@ -41,6 +41,23 @@ class SettingsControlsTests(unittest.TestCase):
         event=QMouseEvent(kind,local,QPointF(global_pos),button,button,Qt.KeyboardModifier.NoModifier)
         QApplication.sendEvent(widget,event)
 
+    def test_json_import_dialog_clears_foreign_paths_then_local_save_keeps_home(self):
+        p=self.pet;p.open_preferences()
+        payload=copy.deepcopy(p.settings)
+        payload['appearance'].update(deepseek_home='foreign-home',deepseek_executable='foreign.exe',volume=41)
+        payload['bindings']['pet']['bubble_text']='导入字幕保留'
+        path=self.root/'external.json';path.write_text(json.dumps(payload),'utf8')
+        with patch('shorekeeper_pet.preferences.ROOT',self.root),patch('shorekeeper_pet.preferences.QFileDialog.getOpenFileName',return_value=(str(path),'')):
+            p.preferences.import_file()
+        self.assertEqual(p.options['deepseek_home'],'')
+        self.assertNotIn('deepseek_executable',p.options)
+        self.assertNotIn('deepseek_executable',p.preferences.controls)
+        self.assertEqual(p.options['volume'],41)
+        self.assertEqual(p.binding('pet')['bubble_text'],'导入字幕保留')
+        self.assertEqual(module.load_settings()['appearance']['deepseek_home'],'')
+        p.set_option('deepseek_home','chosen-on-this-computer')
+        self.assertEqual(module.load_settings()['appearance']['deepseek_home'],'chosen-on-this-computer')
+
     def test_one_settings_window_contains_every_entry_and_update_check(self):
         p=self.pet
         for menu in (p.context_menu(),p.tray.contextMenu()):

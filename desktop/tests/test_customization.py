@@ -2,7 +2,7 @@ import json,pathlib,tempfile,unittest,zipfile
 from shorekeeper_pet.paths import EXECUTABLE_NAME,PORTABLE_DIRNAME
 from shorekeeper_pet.bindings import BindingMap,PlaybackController
 from shorekeeper_pet.audio_player import resolve_audio
-from shorekeeper_pet.config_io import export_bundle,import_bundle,save_atomic,migrate_settings
+from shorekeeper_pet.config_io import export_bundle,import_bundle,save_atomic,migrate_settings,imported_settings
 
 class TimelineTests(unittest.TestCase):
     def setUp(self):
@@ -42,6 +42,46 @@ class TimelineTests(unittest.TestCase):
         self.assertEqual(restored.resolve('a','pet')['audio_file'],'')
 
 class TransferTests(unittest.TestCase):
+    def test_local_settings_keep_home_but_drop_obsolete_executable(self):
+        source={'appearance':{'deepseek_home':'local-home','deepseek_executable':'old.exe','volume':37}}
+        restored=migrate_settings(source)
+        self.assertEqual(restored['appearance']['deepseek_home'],'local-home')
+        self.assertNotIn('deepseek_executable',restored['appearance'])
+        self.assertEqual(source['appearance']['deepseek_executable'],'old.exe')
+
+    def test_import_clears_foreign_routing_without_losing_customization(self):
+        source={'thread':'foreign-conversation','position':[9000,9000],'scale':1.25,
+            'appearance':{'deepseek_home':'foreign-home','deepseek_executable':'foreign.exe',
+                'volume':37,'launch_with_deepseek':True,'bubble_width_ratio':1.4},
+            'bindings':{'thinking':{'bubble_mode':'audio','audio_clips':[{'file':'notice.wav','subtitle':'保留字幕'}]}}}
+        restored=imported_settings(source)
+        self.assertEqual(restored['appearance']['deepseek_home'],'')
+        self.assertNotIn('deepseek_executable',restored['appearance'])
+        self.assertEqual(restored['thread'],'auto');self.assertNotIn('position',restored)
+        self.assertEqual(restored['bindings'],source['bindings'])
+        for key in ('volume','launch_with_deepseek','bubble_width_ratio'):
+            self.assertEqual(restored['appearance'][key],source['appearance'][key])
+        self.assertEqual(restored['scale'],1.25)
+        self.assertEqual(imported_settings(restored),restored)
+        self.assertEqual(source['appearance']['deepseek_home'],'foreign-home')
+
+    def test_old_zip_cannot_restore_foreign_connection_paths(self):
+        source=dict(self.settings,appearance=dict(self.settings['appearance'],deepseek_executable='foreign.exe'))
+        archive=self.root.parent/'legacy.zip'
+        with zipfile.ZipFile(archive,'w') as z:
+            z.writestr('settings.json',json.dumps(source))
+            z.writestr('manifest.json',json.dumps({'format':'shorekeeper-profile','files':{}}))
+        restored=import_bundle(archive,self.root.parent/'new-computer')
+        self.assertEqual(restored['appearance']['deepseek_home'],'')
+        self.assertNotIn('deepseek_executable',restored['appearance'])
+        self.assertEqual(restored['thread'],'auto')
+
+    def test_invalid_appearance_is_normalized_before_migration(self):
+        for value in (None,[],False,'invalid'):
+            with self.subTest(value=value):
+                result=imported_settings({'appearance':value})
+                self.assertEqual(result['appearance']['deepseek_home'],'')
+
     def test_codex_media_import_does_not_enable_codex_startup_or_copy_its_paths(self):
         cfg=migrate_settings({'appearance':{'codex_home':'private','codex_executable':'private.exe','launch_with_codex':True,'volume':32},'bindings':{'pet':{'bubble_mode':'custom','bubble_text':'你好'}}})
         self.assertNotIn('codex_home',cfg['appearance'])
@@ -58,6 +98,11 @@ class TransferTests(unittest.TestCase):
     def tearDown(self): self.tmp.cleanup()
     def test_roundtrip_embeds_audio_and_fonts(self):
         dest=self.root.parent/'profile.zip'; export_bundle(dest,self.settings,self.root)
+        with zipfile.ZipFile(dest) as z:
+            exported=json.loads(z.read('settings.json'))
+            self.assertEqual(exported['appearance']['deepseek_home'],'')
+            self.assertNotIn('deepseek_executable',exported['appearance'])
+            self.assertEqual(exported['thread'],'auto')
         target=self.root.parent/'restored'; restored=import_bundle(dest,target)
         self.assertEqual(restored['bindings']['pet']['speed'],.5)
         audio=resolve_audio(restored['bindings']['pet']['audio_file'],restored['appearance']['audio_directory'],target)
@@ -65,12 +110,14 @@ class TransferTests(unittest.TestCase):
         self.assertTrue((target/'fonts/font.ttf').exists())
     def test_portable_resets_machine_connection_and_excludes_private_files(self):
         runtime=self.root/'dist'/PORTABLE_DIRNAME; (runtime/'_internal').mkdir(parents=True); (runtime/EXECUTABLE_NAME).write_bytes(b'MZtest'); (runtime/'_internal/core.dll').write_bytes(b'core')
+        (self.root/'BUILD_INFO.json').write_text('{"source_commit":"example"}')
         (self.root/'auth.json').write_text('secret'); (self.root/'runtime.json').write_text('private')
         dest=self.root.parent/'portable.zip'; export_bundle(dest,self.settings,self.root,True)
         with zipfile.ZipFile(dest) as z:
             names=z.namelist(); cfg=json.loads(z.read('settings.json'))
             self.assertNotIn('auth.json',names); self.assertNotIn('runtime.json',names); self.assertIn(EXECUTABLE_NAME,names)
             self.assertEqual(cfg['thread'],'auto'); self.assertEqual(cfg['appearance']['deepseek_home'],'')
+            self.assertEqual(json.loads(z.read('BUILD_INFO.json'))['source_commit'],'example')
     def test_path_traversal_is_rejected_before_writes(self):
         dest=self.root.parent/'bad.zip'
         with zipfile.ZipFile(dest,'w') as z: z.writestr('../escape','bad')
