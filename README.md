@@ -2,11 +2,11 @@
   <img src="https://raw.githubusercontent.com/Doya16/dsh-shorekeeper/v1.1.2/icon.png" width="192" height="192" alt="守岸人桌宠 Logo：角色与算力配额框，1145.14 为模拟值">
 </p>
 
-# B站四百多人收藏的守岸人桌宠
+# B站 400+ 收藏的守岸人桌宠
 
 **鸣潮 · 守岸人桌宠｜DeepSeek Harness 完整版插件**
 
-**漂泊者，守岸人来陪你了。**
+**现在，守岸人来陪你了。**
 
 把《鸣潮》的守岸人带到桌面，陪你工作，也陪你等待。任务进行时换上小表情，完成后用熟悉的语音回应。
 
