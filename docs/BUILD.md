@@ -32,4 +32,31 @@ npm pack
 
 发布前应核对完整包的 `BUILD_INFO.json`、SHA-256 清单、插件清单与发布附件一致。源码构建提交与最终插件发布提交可能不同：完整包构建之后才更新其摘要；这两个提交之间不得改变桌宠运行源码。
 
+## npm 发布与源码对应
+
+最终版本号、README、运行包清单和所有发布文件先提交并推送到公开的 `origin/main`。从该提交新建普通 Git clone 发布（保留 `.git/` 目录，不使用源码 ZIP、linked worktree 或已打好的 TGZ 作为发布输入）：
+
+```powershell
+git clone --config core.autocrlf=false https://github.com/Doya16/dsh-shorekeeper.git shorekeeper-release
+cd shorekeeper-release
+# 检出本次已经推送到 main 的完整提交 SHA
+git checkout --detach <release-commit>
+npm test
+npm run verify:publish
+npm publish --dry-run
+npm publish --access public --registry=https://registry.npmjs.org/
+```
+
+`prepublishOnly` 会自动检查：工作区干净、HEAD 与公开 `origin/main` 一致、npm 待打包的每个文件都存在于 HEAD，并且与 Git blob **逐字节一致**。不能只依赖 `git status`：Git 换行归一化可能把含 CRLF 的工作区报告为干净。检查不修改文件，遇到差异就停止发布。`prepare` / `prepack` / `postpack` 等可能在检查后改写内容的钩子也会阻止发布。
+
+本仓库 `.gitattributes` 固定文本文件使用 LF；生成 `runtime-manifest.json` 的脚本也显式写入 LF。不要跳过发布钩子，不要使用 `npm publish 某个.tgz`；直接从 Git 目录发布，让 npm 记录当前提交的 `gitHead`，不手工填写该字段。发布前不要修改或重新生成已提交的文件。
+
+发布后使用真实版本号核验公开 registry，先等待 npm 完成处理，再执行：
+
+```powershell
+python tools/verify-npm-release.py <version>
+```
+
+该工具核对 npm `gitHead`、下载摘要和实际 TGZ 内每个文件与对应 Git blob 的原始字节，不会忽略换行差异。通过后才在社区申请中注明源码一致性。发布钩子只在发布源码时使用，不在用户安装插件时运行。
+
 SHA-256 校验用于确认下载内容；本地生成的构建记录不能替代独立构建证明，也不承诺不同 Windows/Python 构建环境会产生逐字节相同的 EXE。维护者可按记录中的源码提交和依赖版本自行构建检查。

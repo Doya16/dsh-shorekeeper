@@ -26,10 +26,16 @@
 
 ## 发布后的公开下载核验
 
-- npm 已公开发布 `dsh-shorekeeper@1.1.1`，`latest` 指向 `1.1.1`。使用官方 Harness CLI 从 npm 安装到隔离的 `shorekeeper-npm-qa` 配置成功，安装后的 14 个包文件与发布源码逐字节一致。
+- npm 已公开发布 `dsh-shorekeeper@1.1.1`，`latest` 指向 `1.1.1`。使用官方 Harness CLI 从 npm 安装到隔离的 `shorekeeper-npm-qa` 配置成功，安装后的 14 个包文件与当时本地打包工作目录逐字节一致。此检查不等于与 Git 提交的字节一致，见下方更正。
 - 从 npm 公开 registry 实际下载 TGZ，确认与已验证的 GitHub Release 附件逐字节相同：579,307 字节，SHA-256 为 `4f1f3dddf6f9fa2d2bdea430b49acfa3397b0213b051dacde55f5cc824f3f621`；registry 的 SHA-1 和 SHA-512 integrity 也与本地打包记录一致。
 - 通过已安装插件的实际下载流程，从公开 GitHub Release 下载并安装完整版，固定大小和 SHA-256 校验通过，程序版本为 1.1.1。
 - 旧版 v1.1.0 的实际 EXE 通过公开 GitHub 更新接口识别到 v1.1.1，状态为可更新。此检查与上述保留配置的实际升级测试分别完成。
+
+## v1.1.1 源码对应关系更正
+
+重新下载公开 npm 包，并直接与发布提交 `f0dcc2121a263b09abc6813487d03c58c2fe207b` 的 Git blob 比对，确认 npm 元数据缺少 `gitHead`。14 个文件中 9 个逐字节相同；`lib/client.js`、`lib/index.js`、`locale/en.json`、`locale/zh.json` 和 `runtime-manifest.json` 的差异仅为 CRLF/LF 换行，归一化换行后内容相同。之前“与发布源码逐字节一致”的表述不准确，实际比较对象是本地工作目录。
+
+v1.1.1 的公开发行包保持原样。后续版本按 [npm 发布流程](BUILD.md#npm-发布与源码对应) 从已推送的干净 Git clone 直接发布，发布前逐文件检查 Git 原始字节，发布后校验公开 `gitHead` 和实际下载包。
 
 ## 范围
 

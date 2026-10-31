@@ -43,7 +43,9 @@
     "url": "git+https://github.com/Doya16/dsh-shorekeeper.git"
   },
   "scripts": {
-    "test": "node --test test/*.test.js"
+    "test": "node --test test/*.test.js",
+    "verify:publish": "node tools/verify-npm-source.mjs",
+    "prepublishOnly": "node tools/verify-npm-source.mjs"
   },
   "dsh": {
     "bundle": {
