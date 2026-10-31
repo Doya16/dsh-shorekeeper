@@ -24,6 +24,13 @@
 - npm 包按文件白名单打包，不含 `desktop/`、测试数据、账户资料和聊天记录；源码/媒体仍保留在 GitHub，首次运行另行下载完整程序。
 - 官方独立 CLI 在隔离的 `shorekeeper-qa` 配置安装 TGZ 成功。独立 CLI 不允许修改桌面客户端管理的 `desktop` 配置，README 已区分两者。
 
+## 发布后的公开下载核验
+
+- npm 已公开发布 `dsh-shorekeeper@1.1.1`，`latest` 指向 `1.1.1`。使用官方 Harness CLI 从 npm 安装到隔离的 `shorekeeper-npm-qa` 配置成功，安装后的 14 个包文件与发布源码逐字节一致。
+- 从 npm 公开 registry 实际下载 TGZ，确认与已验证的 GitHub Release 附件逐字节相同：579,307 字节，SHA-256 为 `4f1f3dddf6f9fa2d2bdea430b49acfa3397b0213b051dacde55f5cc824f3f621`；registry 的 SHA-1 和 SHA-512 integrity 也与本地打包记录一致。
+- 通过已安装插件的实际下载流程，从公开 GitHub Release 下载并安装完整版，固定大小和 SHA-256 校验通过，程序版本为 1.1.1。
+- 旧版 v1.1.0 的实际 EXE 通过公开 GitHub 更新接口识别到 v1.1.1，状态为可更新。此检查与上述保留配置的实际升级测试分别完成。
+
 ## 范围
 
 验证面向 Windows x64 本机运行；未验证 macOS、Linux、远程服务器或其他 Harness 版本。测试记录和构建记录不等于独立安全审计，社区收录仍由维护者审核。
