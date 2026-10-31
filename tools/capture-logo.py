@@ -51,6 +51,11 @@ def main():
         pet.animation.frame = lambda *args, **kwargs: pet.animation.frames[0]
         pet.transition_old = None
         pet.update_layout()
+        # Align the outer border with the character, without enlarging its text.
+        border_half = 0.8 * pet.quota_pet_factor * pet.quota_display_scale
+        pet.quota_rect.setLeft(pet.pet_rect.left() + border_half)
+        pet.quota_rect.setRight(pet.pet_rect.right() - border_half)
+        pet.quota_base_width = pet.quota_rect.width() / pet.quota_display_scale
         pet.lock_button.hide()
         pet.bubble_window.hide()
         image = QImage(1024, 1024, QImage.Format.Format_ARGB32_Premultiplied)
