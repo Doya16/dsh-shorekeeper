@@ -8,6 +8,8 @@
 - 市场图标保持原画面与透明背景，输出 512×512 PNG、223,881 字节，小于 262,144 字节上限；1024×1024 原图保存在文档目录，不进入 npm 包。
 - 新版发布前执行 Git 原始字节检查，从干净 clone 直接发布；发布后核对公开 `gitHead`、TGZ 内容、图标收录条件及官方 CLI 安装。
 
+公开发布后核验通过：npm 的 `latest` 为 `1.1.2`，`gitHead` 为 `6608efa6df6aee1991696a37a049de83ce18bd29`；245,685 字节的 TGZ 与本地发布产物相同，15 个文件与该 Git 提交以及官方 CLI 从 npm 安装后的文件逐字节一致。公开包内图标经市场的 `packageDisplay` 检查为 `included`、无警告。TGZ SHA-256：`aa513eb6ca17ba2df961d93f21c6eda07c5d91a4c88c90ebef922ecc75a56183`。
+
 「已审查」只匹配市场维护者记录的精确版本和完整性哈希。1.1.1 的记录不能用于 1.1.2，新版需要维护者重新复核。规则见 [市场审核说明](https://github.com/polang233/dsh-plugin-index/blob/main/docs/reviews/review-policy.md)。
 
 ---
