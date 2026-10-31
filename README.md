@@ -201,7 +201,7 @@ dsh plugin --profile shorekeeper add dsh-shorekeeper@1.1.1
 
 感谢所有为该项目表情包众筹投资的守岸人厨子们。
 
-程序代码采用 [MIT](https://github.com/Doya16/dsh-shorekeeper/blob/v1.1.1/LICENSE)；角色、表情包、语音与字体遵循各自的许可，详见 [素材说明](https://github.com/Doya16/dsh-shorekeeper/blob/v1.1.1/CREDITS.txt) 和 [第三方说明](https://github.com/Doya16/dsh-shorekeeper/blob/v1.1.1/desktop/THIRD_PARTY.txt)。
+程序代码采用 [MIT](https://github.com/Doya16/dsh-shorekeeper/blob/main/LICENSE)；角色、表情包、语音与字体遵循各自的许可，详见 [素材说明](https://github.com/Doya16/dsh-shorekeeper/blob/v1.1.1/CREDITS.txt) 和 [第三方说明](https://github.com/Doya16/dsh-shorekeeper/blob/v1.1.1/desktop/THIRD_PARTY.txt)。
 
 ## 开发与验证
 
