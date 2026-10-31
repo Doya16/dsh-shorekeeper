@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="icon.png" width="128" height="128" alt="守岸人桌宠 Logo：默认配置中的守岸人形象">
+  <img src="icon.png" width="192" height="192" alt="守岸人桌宠 Logo：角色与算力配额框，1145.14 为模拟值">
 </p>
 
 # 守岸人桌宠 · DeepSeek Harness 完整版插件
@@ -70,10 +70,10 @@
 3. 点击窗口右下角 **守岸人桌宠 → 下载并安装完整版**。首次下载约 213 MiB，可选自动、GitHub 或镜像加速。
 4. 点击 **启动桌宠**。右键桌宠 → **设置…**，或从插件入口点击 **打开完整设置**。
 
-[社区收录申请 #158](https://github.com/polang233/dsh-plugin-index/issues/158) 已提交，等待市场维护者审核，尚不代表已在市场上线。审核前可从本项目 Release 下载 `dsh-shorekeeper-1.1.0.tgz`，通过 Harness 插件安装入口安装；也可使用 CLI：
+[社区收录申请 #158](https://github.com/polang233/dsh-plugin-index/issues/158) 已提交，等待市场维护者审核，尚不代表已在市场上线。审核前可下载 [插件安装包（新版 Logo）](https://github.com/Doya16/dsh-shorekeeper/releases/download/v1.1.0/dsh-shorekeeper-1.1.0-logo.tgz)，通过 Harness 插件安装入口安装；也可使用 CLI：
 
 ```powershell
-dsh plugin --profile desktop add C:\Downloads\dsh-shorekeeper-1.1.0.tgz
+dsh plugin --profile desktop add C:\Downloads\dsh-shorekeeper-1.1.0-logo.tgz
 ```
 
 安装后启用插件即可，无需另外安装旧版的连接插件。若同时运行原独立版，可能出现两只桌宠；按需要关闭其中一只。
@@ -189,7 +189,7 @@ dsh plugin --profile desktop add C:\Downloads\dsh-shorekeeper-1.1.0.tgz
 
 表情包来自 [鸣潮表情包站](https://emoji.wuwa.games/)。表情包众筹 QQ 群：**1079834905**。
 
-本项目 [Logo / 插件图标](icon.png) 沿用默认配置中的守岸人形象；角色与表情包权利归原权利人所有。项目为非官方社区插件。
+本项目 [Logo / 插件图标](icon.png) 使用默认守岸人形象与底部配额框的实际界面截图；其中“算力配额：1145.14”为展示用模拟值。角色与表情包权利归原权利人所有。项目为非官方社区插件。
 
 感谢所有为该项目表情包众筹投资的守岸人厨子们。
 
