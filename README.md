@@ -4,15 +4,17 @@
 
 # B站四百多人收藏的守岸人桌宠
 
-**DeepSeek Harness 完整版插件 · Windows**
+**鸣潮 · 守岸人桌宠｜DeepSeek Harness 完整版插件**
 
-让守岸人陪你使用 **DeepSeek Harness**。任务进行时换表情，完成后用你挑选的语音和气泡回应。
+**漂泊者，守岸人来陪你了。**
+
+把《鸣潮》的守岸人带到桌面，陪你工作，也陪你等待。任务进行时换上小表情，完成后用熟悉的语音回应。
 
 [B站视频：【DeepSeek x 鸣潮】守岸人来陪你了｜回应任务的自定义桌宠](https://www.bilibili.com/video/BV1tiHm6zEt9/)
 
 [下载插件](https://www.npmjs.com/package/dsh-shorekeeper) · [完整演示](https://github.com/Doya16/shorekeeper-deepseek-pet/releases/download/v0.5.1/shorekeeper-deepseek-landscape-v051-r2.mp4) · [开始使用](#开始使用) · [原独立安装版](https://github.com/Doya16/shorekeeper-deepseek-pet) · [收录申请](https://github.com/polang233/dsh-plugin-index/issues/158)
 
-**任务有回应，陪伴可自定义。** 思考、查阅、编写、完成各有表情；为每个动作挑 GIF、声音和对应字幕。在一个设置窗口里调整大小、字体、静音、锁定穿透和余额显示，换电脑时连同配置与素材一起带走。
+摸摸头、拖一拖，看她换个表情回应你。为每个动作挑选喜欢的表情、声音和台词；想专心时，一键静音，让她安静待在身边。换电脑时，连同你的搭配一起带走。
 
 **使用条件：** Windows 10/11 x64、本机 DeepSeek Harness；安装并启用插件后，从“守岸人桌宠”入口下载和启动完整版，无需安装 Python。
 
