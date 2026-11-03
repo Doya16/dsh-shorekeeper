@@ -19,6 +19,21 @@
 
 ## 发行文件
 
+### 公开发布后复核
+
+- GitHub Release 的 5 个附件均已核对远端大小及 SHA-256；实际下载公开程序包后，清单和逐文件校验通过。真实旧版 EXE 能通过公开更新接口识别 1.2.0；旧版手动覆盖包也通过实际升级验证。
+- npm `latest` 指向 1.2.0，`gitHead` 为 `d1f54982c4dd14ba334df48ea20d0aa9cebdbfeb`。公开 TGZ 为 266,958 字节，15 个文件与发布提交的 Git blob 逐字节一致，没有忽略换行差异。
+- 官方 Harness CLI 在隔离 profile 中从公开 npm 将 1.1.4 升级到 1.2.0；安装后的全部文件与公开 TGZ 一致，运行清单与发布源码相同，指向 1.2.0 完整程序。
+- npm 包内图标为 223,881 字节，低于 256 KiB。TGZ SHA-256：`9c01aec3b7942cd6f07210d1333fd335878462732a031cf5e267712285a91ca9`。
+
+~~~text
+sha512-HPmhJoUrF2P95qGERA1YgOkgrDRiSChK55ZbyjeBa6h3SWihsQxsqQJzzI/DlxgBXTNDsW6cNSNa6TmBEgW8ZQ==
+~~~
+
+上述为项目自行验证的结果；市场新版的“已审查”标记仍需维护者复核。
+
+### Windows 附件
+
 | 文件 | 字节数 | SHA-256 |
 | --- | ---: | --- |
 | Shorekeeper-Windows-v1.2.0.zip | 239649909 | `3d4c70f12bca51503d785c82dc7187e7688b60d54b0e40653683554712816279` |

@@ -1,6 +1,16 @@
 # v1.2.0 一键更新与中断恢复
 
-新版范围和实际验证见 [更新验证记录](UPDATE-VALIDATION-v1.2.0.md)。150 项 Python、30 项 Node 测试及三种异常恢复、旧版升级、迁移和 Harness 托管重启通过。公开发行后的源码与 npm 对应结果会追加。
+新版范围和实际验证见 [更新验证记录](UPDATE-VALIDATION-v1.2.0.md)。150 项 Python、30 项 Node 测试及三种异常恢复、旧版升级、迁移和 Harness 托管重启通过。
+
+公开发行后核验通过：npm `latest` 为 `1.2.0`，`gitHead` 为 `d1f54982c4dd14ba334df48ea20d0aa9cebdbfeb`；266,958 字节的公开 TGZ 内 15 个文件与该提交逐字节一致，包括换行。官方 Harness CLI 在隔离 profile 中从公开 npm 将 1.1.4 升级至 1.2.0，安装文件也与公开包完全一致。图标为 223,881 字节，低于 256 KiB。公开 GitHub 程序包下载、清单及文件校验和旧版更新识别均通过，完整程序与 npm 插件均为 1.2.0。
+
+npm TGZ SHA-256：`9c01aec3b7942cd6f07210d1333fd335878462732a031cf5e267712285a91ca9`。
+
+~~~text
+sha512-HPmhJoUrF2P95qGERA1YgOkgrDRiSChK55ZbyjeBa6h3SWihsQxsqQJzzI/DlxgBXTNDsW6cNSNa6TmBEgW8ZQ==
+~~~
+
+新版仍需维护者按精确版本及完整性哈希复核，旧版“已审查”记录不代表 1.2.0 已审核。
 
 # v1.1.4 · 隐藏余额框后的屏幕适配
 
