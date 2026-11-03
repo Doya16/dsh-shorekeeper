@@ -60,3 +60,13 @@ python tools/verify-npm-release.py <version>
 该工具核对 npm `gitHead`、下载摘要和实际 TGZ 内每个文件与对应 Git blob 的原始字节，不会忽略换行差异。通过后才在社区申请中注明源码一致性。发布钩子只在发布源码时使用，不在用户安装插件时运行。
 
 SHA-256 校验用于确认下载内容；本地生成的构建记录不能替代独立构建证明，也不承诺不同 Windows/Python 构建环境会产生逐字节相同的 EXE。维护者可按记录中的源码提交和依赖版本自行构建检查。
+
+## v1.2 程序更新包与恢复
+
+构建脚本另外构建两个只依赖 Python 标准库的 `--onefile --windowed` 程序：`desktop/tools/run_bootstrap.py`（根目录友好名称启动器）和 `desktop/tools/run_updater.py`（独立安装助手）。Qt 程序位于 `.programs/<version>/`，根目录 `current-program.json` 选择当前版本，素材及配置仍位于根目录。
+
+`tools/package-runtime.py` 同时生成 `Shorekeeper-Program-Update-v<version>.zip` 及 `Shorekeeper-AutoUpdate-v<version>.json`，插件清单也记录程序包信息。每个文件有大小和 SHA-256，下载后全部校验；仅允许程序路径，不允许覆盖配置、GIF、音频、字体和默认素材。程序包包含完整运行库，不是二进制差分；首次安装仍下载完整包。
+
+安装助手先保留旧版本并备份即将覆盖的程序文件与设置，再写入 `.update-transaction.json`，完整部署新版后原子切换版本指针。新版必须报告匹配进程、版本和随机更新标识的持续健康状态。失败时恢复快照；下次启动会恢复未提交的安装事务、清理已退出进程拥有的下载缓存。个人素材不参与替换或删除。旧安装首次迁入此布局时，原根目录 EXE 也有备份。恢复和下载操作都限制在本桌宠目录中，无需管理员权限。
+
+桌宠可独立更新运行程序；Harness npm 连接插件仍通过插件管理更新。连接协议当前为 1；高版本桌面程序不会被旧 npm 清单降级，协议不兼容的程序更新会被拒绝。

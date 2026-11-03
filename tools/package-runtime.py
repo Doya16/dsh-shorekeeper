@@ -14,10 +14,15 @@ warnings=export_bundle(archive,settings,runtime,True)
 if warnings:raise RuntimeError(warnings)
 digest=hashlib.file_digest(archive.open('rb'),'sha256').hexdigest()
 manifest=dict(version=VERSION,bytes=archive.stat().st_size,sha256=digest,url=f'https://github.com/Doya16/dsh-shorekeeper/releases/download/v{VERSION}/{archive.name}')
+import importlib.util
+spec=importlib.util.spec_from_file_location('program_package',root/'desktop/tools/package_update.py')
+program_package=importlib.util.module_from_spec(spec);spec.loader.exec_module(program_package)
+program_result=program_package.package(archive,destination)
+manifest['program']=program_result['program']
 (root/'runtime-manifest.json').write_text(json.dumps(manifest,indent=2)+'\n','utf8',newline='\n')
-(destination/f'Shorekeeper-SHA256SUMS-v{VERSION}.txt').write_text(f'{digest}  {archive.name}\n','utf8',newline='\n')
+(destination/f'Shorekeeper-SHA256SUMS-v{VERSION}.txt').write_text(''.join(hashlib.sha256(p.read_bytes()).hexdigest()+'  '+p.name+'\n' for p in (archive,pathlib.Path(program_result['archive']),pathlib.Path(program_result['manifest']))),'utf8',newline='\n')
 with zipfile.ZipFile(archive) as z:
  names=z.namelist()
  assert not any('shortcut' in n.lower() or '快捷方式' in n for n in names)
  assert not any('.credentials' in n or 'desktop.json' in n or 'runtime.json'==n for n in names)
- print(json.dumps(dict(**manifest,files=len(names),gif=sum(n.endswith('.gif') for n in names),fonts=sum(n.endswith(('.ttf','.otf','.ttc')) for n in names)),ensure_ascii=False))
+ print(json.dumps(dict(**{k:v for k,v in manifest.items() if k!='program'},files=len(names),gif=sum(n.endswith('.gif') for n in names),fonts=sum(n.endswith(('.ttf','.otf','.ttc')) for n in names)),ensure_ascii=False))
