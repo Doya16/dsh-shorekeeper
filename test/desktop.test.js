@@ -29,7 +29,7 @@ test('install and update preserve all user data, retain rollback folder and neve
   const dir=await workspace(t);
   const manager=new DesktopManager(dir,manifest,{platform:'win32',arch:'x64',download:async(_,target)=>writeFile(target,bytes),extract:makeRuntime});
   await manager.install();assert.equal((await manager.status()).version,'1.1.0');
-  const saved=JSON.stringify({appearance:{volume:23,update_source:'mirror'},bindings:{thinking:{bubble_text:'我的字幕'}}});
+  const saved=JSON.stringify({appearance:{volume:23,update_source:'mirror',show_quota:false,quota_scale:1.65},bindings:{thinking:{bubble_text:'我的字幕'}}});
   for(const [name,text]of Object.entries({'settings.json':saved,'assets/custom/a.gif':'GIF89a','audio/custom.ogg':'VOICE','fonts/custom.ttf':'FONT','exports/profile.zip':'EXPORTED'}))await put(manager.root,name,text);
   await manager.install('mirror');
   assert.equal(await readFile(join(manager.root,'settings.json'),'utf8'),saved);
