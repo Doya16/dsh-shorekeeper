@@ -7,7 +7,19 @@
 - 实际 DesktopManager 完成 v1.1.1 → v1.1.4 升级，旧设置逐字节保留，个人素材、导出文件保留；新版安装标记与清单一致。
 - 含中文和空格目录的配置 ZIP / 完整便携 ZIP 迁移通过；所有归档文件校验一致，保留 83 个 GIF、40 个音频、54 组语音字幕配对和两款字体。隐藏选择、余额框比例、修改的台词及音量保留。
 - 通过实际 EXE 验证隐藏时思考、查阅、编写、完成切换，重启保留隐藏选择，重新显示恢复比例；事件和余额为隔离模拟数据，没有调用真实计费任务。
-- 公开下载、旧版公开更新识别及 npm 源码对应关系在发布后补充。
+- 已通过实际 DesktopManager 从 GitHub 公开下载并安装 1.1.4，字节数及 SHA-256 一致；原 v1.1.1 EXE 实际查询 GitHub，返回 available / latest=1.1.4。
+- npm latest 已为 1.1.4，公开包为 246,271 字节，gitHead=0509ae5c266c3617587139c35c174ac629da8bc2；15 个发布文件与该提交的 Git blob 逐字节一致，未忽略换行差异。公开图标仍为 223,881 字节。
+- 官方 Harness CLI 在隔离 profile 从公开 npm 将 1.1.2 升级至 1.1.4，安装后的 15 个文件与公开包逐字节一致，完整版清单指向相同的 1.1.4 Release。
+
+公开 npm TGZ SHA-256：b06c7fdd6c45c928f14a168bca66abb9e697c79534a7b9ed63a883c88977368d。
+
+npm 完整性哈希：
+
+~~~text
+sha512-3SZg1AFDj9DcuPoinAoTxmnrR7EKEuWM+8n5LWEF+hUO/wWAm9dUGS20f15ibAIs18d6k3FXtGwPyYKkDa1xnA==
+~~~
+
+市场“已审查”记录仍须维护者针对新版及完整性哈希复核，不将此前版本的记录视为 1.1.4 已审核。
 
 完整程序从干净提交 82d5929 构建，包内 BUILD_INFO.json 包含完整 SHA 与依赖版本。运行包 222786875 字节，SHA-256：9c9428b32b1e0567447ada23eeb5d567b6cff6d6f9afb6e49fe560c9cb2a1661。
 
