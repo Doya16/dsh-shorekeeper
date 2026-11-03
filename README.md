@@ -36,6 +36,13 @@
 
 **v1.1.3 新增余额框显示开关：在「设置 → 字体与大小 → 余额框大小」旁勾选，或右键桌宠 / 余额框，在「刷新余额」下一项选择「隐藏余额框 / 显示余额框」。隐藏后收起占位，角色大小与位置保持不变，设置随配置保存和迁移。旧用户请更新 Harness 插件，再在「设置 → 守岸人桌宠」更新完整版。**
 
+<p>
+  <img src="https://raw.githubusercontent.com/Doya16/dsh-shorekeeper/v1.1.3/docs/images/balance-visible.png" width="200" alt="显示余额框，示例余额">
+  <img src="https://raw.githubusercontent.com/Doya16/dsh-shorekeeper/v1.1.3/docs/images/balance-hidden.png" width="200" alt="隐藏余额框后角色大小不变">
+</p>
+
+[设置中的显示开关](https://github.com/Doya16/dsh-shorekeeper/blob/v1.1.3/docs/images/balance-settings.png) · [右键菜单中的显示 / 隐藏选项](https://github.com/Doya16/dsh-shorekeeper/blob/v1.1.3/docs/images/balance-menu.png)
+
 | 时间 | 展示内容 |
 | --- | --- |
 | 00:01 | 跟随任务，切换思考、查阅、编写等表情 |
