@@ -35,7 +35,8 @@ class PetRenderer:
         metrics=QFontMetrics(self.quota_font)
         bar_height=max(39,metrics.height()+18)*self.quota_pet_factor
         bar_width=min(230,max(146,metrics.horizontalAdvance(self.quota_label(compact=True))+28))*self.quota_pet_factor
-        self.scale_factor=fitted_scale(self.requested_scale,size+8,size+bar_height+14,area.width(),area.height())
+        fit_height=size+bar_height+14 if opts['show_quota'] else size+8
+        self.scale_factor=fitted_scale(self.requested_scale,size+8,fit_height,area.width(),area.height())
         self.quota_base_width=bar_width; self.quota_base_height=bar_height
         self.quota_display_scale=min(opts['quota_scale'],(area.width()/self.scale_factor-8)/bar_width,(area.height()/self.scale_factor-size-14)/bar_height)
         self.quota_display_scale=max(.1,self.quota_display_scale)

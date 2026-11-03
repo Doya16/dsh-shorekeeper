@@ -34,14 +34,14 @@
 
 视频及星空背景展示图沿用 **DeepSeek 独立版 v0.5.1** 的完整演示，时长 **03:17**；部分通用设置配图也沿用独立版，插件版完整设置截图列在下方。插件版保留其中的桌面功能，安装与启动请按下方步骤操作；视频中的创建桌面快捷方式不适用于插件版。**客户端窗口、对话、任务、余额和新版提醒为示例；桌宠与设置为实际界面。**
 
-**v1.1.3 新增余额框显示开关：在「设置 → 字体与大小 → 余额框大小」旁勾选，或右键桌宠 / 余额框，在「刷新余额」下一项选择「隐藏余额框 / 显示余额框」。隐藏后收起占位，角色大小与位置保持不变，设置随配置保存和迁移。旧用户请更新 Harness 插件，再在「设置 → 守岸人桌宠」更新完整版。**
+**v1.1.4 新增余额框显示开关：在「设置 → 字体与大小 → 余额框大小」旁勾选，或右键桌宠 / 余额框，在「刷新余额」下一项选择「隐藏余额框 / 显示余额框」。隐藏后不再为余额框留空，贴边和屏幕适配只计算角色范围，设置随配置保存和迁移。旧用户请更新 Harness 插件，再在「设置 → 守岸人桌宠」更新完整版。**
 
 <p>
-  <img src="https://raw.githubusercontent.com/Doya16/dsh-shorekeeper/v1.1.3/docs/images/balance-visible.png" width="200" alt="显示余额框，示例余额">
-  <img src="https://raw.githubusercontent.com/Doya16/dsh-shorekeeper/v1.1.3/docs/images/balance-hidden.png" width="200" alt="隐藏余额框后角色大小不变">
+  <img src="https://raw.githubusercontent.com/Doya16/dsh-shorekeeper/v1.1.4/docs/images/balance-visible.png" width="200" alt="显示余额框，示例余额">
+  <img src="https://raw.githubusercontent.com/Doya16/dsh-shorekeeper/v1.1.4/docs/images/balance-hidden.png" width="200" alt="隐藏余额框后角色大小不变">
 </p>
 
-[设置中的显示开关](https://github.com/Doya16/dsh-shorekeeper/blob/v1.1.3/docs/images/balance-settings.png) · [右键菜单中的显示 / 隐藏选项](https://github.com/Doya16/dsh-shorekeeper/blob/v1.1.3/docs/images/balance-menu.png)
+[设置中的显示开关](https://github.com/Doya16/dsh-shorekeeper/blob/v1.1.4/docs/images/balance-settings.png) · [右键菜单中的显示 / 隐藏选项](https://github.com/Doya16/dsh-shorekeeper/blob/v1.1.4/docs/images/balance-menu.png)
 
 | 时间 | 展示内容 |
 | --- | --- |
@@ -171,7 +171,7 @@ dsh plugin --profile shorekeeper add dsh-shorekeeper@1.1.2
 
 ## 检查更新与保留配置升级
 
-当前插件与完整程序版本均为 **v1.1.3**。本次功能位于完整程序中：先更新 Harness 插件，再到 Harness「设置 → 守岸人桌宠」点击“更新完整版”。个人配置、GIF、语音、字幕和字体会保留；旧配置默认继续显示余额框。右键 → **设置 → 版本与更新**，可开启或关闭完整程序的启动检查、立即检查更新，或恢复已忽略版本的提醒。新版提示支持稍后提醒和忽略此版本；网络检查失败不会打断桌宠。
+当前插件与完整程序版本均为 **v1.1.4**。本次功能位于完整程序中：先更新 Harness 插件，再到 Harness「设置 → 守岸人桌宠」点击“更新完整版”。个人配置、GIF、语音、字幕和字体会保留；旧配置默认继续显示余额框。右键 → **设置 → 版本与更新**，可开启或关闭完整程序的启动检查、立即检查更新，或恢复已忽略版本的提醒。新版提示支持稍后提醒和忽略此版本；网络检查失败不会打断桌宠。
 
 更新来源可选 **自动选择 / GitHub 官方源 / 镜像加速**。自动模式先尝试 GitHub，连接失败时切换 [GH-Proxy](https://gh-proxy.org/)；也可手动固定来源。镜像可能有同步延迟，可切回 GitHub 检查。
 
@@ -207,7 +207,7 @@ dsh plugin --profile shorekeeper add dsh-shorekeeper@1.1.2
 - 面向 **Windows 10/11 x64 本机 DeepSeek Harness**；普通 DeepSeek 聊天网页、macOS、Linux 和远程服务器不在本版支持范围。
 - 验证环境为官方 Harness **0.2.1-rc.5**；安装插件后新开始的任务会出现在会话列表，以“DeepSeek 会话”编号显示。
 - “思考”表示任务处理阶段；气泡展示你设置的台词、字幕或已公开的任务进度。
-- 完整程序的实际任务、账户余额和迁移验证，以及本次入口交互测试的具体范围，见 [测试记录](https://github.com/Doya16/dsh-shorekeeper/blob/v1.1.3/docs/VALIDATION.md)。
+- 完整程序的实际任务、账户余额和迁移验证，以及本次入口交互测试的具体范围，见 [测试记录](https://github.com/Doya16/dsh-shorekeeper/blob/v1.1.4/docs/VALIDATION.md)。
 - 首次下载完整程序约 213 MiB，无需 Python。下载完成会校验固定 SHA-256；数据与运行范围见 [说明](https://github.com/Doya16/dsh-shorekeeper/blob/v1.1.1/docs/SECURITY.md)。
 
 ## 素材来源与感谢

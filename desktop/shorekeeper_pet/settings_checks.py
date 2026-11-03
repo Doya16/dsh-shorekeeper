@@ -77,6 +77,13 @@ def verify_controls(pet):
             and pet.height()<before[0] and pet.pet_rect.size()==before[1] and pet.scale_factor==before[2]
             and not control.quota_visible.isChecked() and not control.controls['quota_scale'][0].isEnabled()
             and not pet.quota_details() and not hidden_image.isNull())
+        saved_pos=pet.pos();area=pet.screen_area()
+        pet.move(area.right()+500,area.bottom()+500);pet.clamp_position()
+        visibility_check=visibility_check and pet.x()+pet.width()==area.right()+1 and pet.y()+pet.height()==area.bottom()+1
+        visibility_check=visibility_check and abs(pet.scene_height-(pet.options['pet_size']+8))<.01
+        pet.move(area.left()-500,area.top()-500);pet.clamp_position()
+        visibility_check=visibility_check and pet.pos()==area.topLeft()
+        pet.move(saved_pos)
         menu.aboutToShow.emit();labels=[a.text() for a in menu.actions()]
         visibility_check=visibility_check and labels[labels.index('刷新余额')+1]=='显示余额框'
         from .pet import load_settings

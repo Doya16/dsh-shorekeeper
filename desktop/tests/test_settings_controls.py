@@ -152,6 +152,34 @@ class SettingsControlsTests(unittest.TestCase):
         for malformed in (None,'false',0,[]):
             self.assertTrue(appearance({'appearance':{'show_quota':malformed}})['show_quota'])
 
+    def test_hidden_balance_fits_screen_without_reserving_footer_or_side_width(self):
+        from PySide6.QtCore import QRect
+        from shorekeeper_pet.sizing import SizeControl,normalize_scale
+        p=self.pet;p.set_option('show_quota',False);p.set_presentation_size('quota_scale',2.5)
+        size=p.options['pet_size']
+        # Small and offset monitors exercise scale fitting and all screen edges.
+        for area in (QRect(0,0,900,700),QRect(-900,30,260,210),QRect(1200,-300,180,200)):
+            with patch.object(p,'screen_area',return_value=area):
+                p.set_scale(2)
+                expected=min(2,area.width()/(size+8),area.height()/(size+8))
+                self.assertAlmostEqual(p.scale_factor,expected)
+                self.assertEqual(p.width(),round((size+8)*expected))
+                self.assertEqual(p.height(),round((size+8)*expected))
+                self.assertTrue(p.quota_hit_rect().isEmpty())
+                for x,y in ((area.left()-1000,area.top()-1000),(area.right()+1000,area.bottom()+1000)):
+                    p.move(x,y);p.clamp_position()
+                    self.assertTrue(area.contains(p.geometry()),(area,p.geometry()))
+                    if x>area.right():
+                        self.assertEqual(p.x()+p.width(),area.right()+1)
+                        self.assertEqual(p.y()+p.height(),area.bottom()+1)
+                        self.assertLessEqual(area.bottom()+1-(p.y()+p.pet_rect.bottom()*p.scale_factor),4*expected+1)
+                    else:self.assertEqual(p.pos(),area.topLeft())
+                control=SizeControl(p);control.fit_screen()
+                requested=round(normalize_scale(area.height()*.27/(size+8))*20)/20
+                self.assertAlmostEqual(p.requested_scale,requested)
+                control.deleteLater()
+        p.set_scale(1);p.clamp_position()
+
     def test_mute_cancels_current_delay_queue_and_late_decode_without_losing_volume(self):
         p=self.pet;p.set_option('audio_enabled',True);voice=p.voice
         self.assertTrue(voice.trigger('pet',p.binding('pet'),p.options))
