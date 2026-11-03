@@ -82,10 +82,10 @@
 
 1. 安装并登录 [DeepSeek Harness](https://www.deepseek.com/harness/)。本版验证环境为 **0.2.1-rc.5**。
 2. 在 Harness 安装并启用 `dsh-shorekeeper`。
-3. 点击窗口右下角 **守岸人桌宠 → 下载并安装完整版**。首次下载约 213 MiB，可选自动、GitHub 或镜像加速。
+3. 点击窗口右下角 **守岸人桌宠 → 下载并安装完整版**。首次下载约 229 MiB，可选自动、GitHub 或镜像加速。
 4. 点击 **启动桌宠**。右键桌宠 → **设置…**，或从插件入口点击 **打开完整设置**。
 
-[社区收录申请 #158](https://github.com/polang233/dsh-plugin-index/issues/158) 已获收录。[npm 包](https://www.npmjs.com/package/dsh-shorekeeper) 名称为 `dsh-shorekeeper`，当前插件版本 `1.1.2`，可通过 Harness 桌面客户端的插件管理安装。插件入口小于 0.3 MB，首次启动完整桌宠另需下载约 213 MiB。市场的「已审查」标签绑定具体版本及哈希，新版需由维护者重新核对。
+[社区收录申请 #158](https://github.com/polang233/dsh-plugin-index/issues/158) 已获收录。[npm 包](https://www.npmjs.com/package/dsh-shorekeeper) 名称为 `dsh-shorekeeper`，当前插件版本 `1.2.0`，可通过 Harness 桌面客户端的插件管理安装。插件入口约 0.3 MB，首次启动完整桌宠另需下载约 229 MiB。市场的「已审查」标签绑定具体版本及哈希，新版需由维护者重新核对。
 
 独立 npm CLI 的用户可向自己的非 `desktop` 配置安装，例如：
 
@@ -173,19 +173,26 @@ dsh plugin --profile shorekeeper add dsh-shorekeeper@1.1.2
 
 ## 检查更新与保留配置升级
 
-当前插件与完整程序版本均为 **v1.1.4**。本次功能位于完整程序中：先更新 Harness 插件，再到 Harness「设置 → 守岸人桌宠」点击“更新完整版”。个人配置、GIF、语音、字幕和字体会保留；旧配置默认继续显示余额框。右键 → **设置 → 版本与更新**，可开启或关闭完整程序的启动检查、立即检查更新，或恢复已忽略版本的提醒。新版提示支持稍后提醒和忽略此版本；网络检查失败不会打断桌宠。
+<img src="https://raw.githubusercontent.com/Doya16/dsh-shorekeeper/v1.2.0/docs/images/update-notice.png" width="360" alt="无声常驻更新气泡，版本号为示例">
 
-更新来源可选 **自动选择 / GitHub 官方源 / 镜像加速**。自动模式先尝试 GitHub，连接失败时切换 [GH-Proxy](https://gh-proxy.org/)；也可手动固定来源。镜像可能有同步延迟，可切回 GitHub 检查。
+![版本与更新设置](https://raw.githubusercontent.com/Doya16/dsh-shorekeeper/v1.2.0/docs/images/update-settings.png)
 
-![版本与更新设置](https://raw.githubusercontent.com/Doya16/dsh-shorekeeper/v1.1.1/docs/demo/update-settings.png)
+当前插件与完整程序版本均为 **v1.2.0**。默认启动时和每 6 小时检查一次，可在 **右键桌宠 → 设置 → 版本与更新** 调整为 1–168 小时，或关闭定时检查。
+
+发现新版时出现无声常驻气泡，语音台词暂时覆盖它，台词结束后恢复。点击 **更新并重启守岸人**，或设置中的 **一键更新**，即可下载程序更新、保留当前搭配并重启。**今日不再提醒** 在当天重启后仍然有效。
+
+更新来源可选 **自动选择 / GitHub 官方源 / 镜像加速**。自动模式先尝试 GitHub，连接失败时切换 [GH-Proxy](https://gh-proxy.org/)；固定来源不会悄悄切换。镜像可能有同步延迟。
 
 | 当前情况 | 如何操作 |
 | --- | --- |
-| 首次安装本插件 | 在 Harness 安装并启用插件，点击入口的“下载并安装完整版”，完成后启动 |
-| 已使用本插件，有新版本 | 更新 Harness 中的插件；在 Harness「设置 → 守岸人桌宠」看到完整程序新版时，点击“更新完整版” |
+| 首次安装本插件 | 在 Harness 安装并启用插件，点击入口“下载并安装完整版”，完成后启动 |
+| 仍使用 1.1.x 程序 | 先更新 Harness 插件，在 Harness「设置 → 守岸人桌宠」点击“更新并重启守岸人” |
+| 已使用 1.2.0 及以后程序 | 点击桌宠更新气泡的按钮，或「设置 → 版本与更新 → 一键更新」 |
 | 原独立版用户迁入 | 在原版导出配置素材 ZIP，安装本插件后，在“设置 → 保存与迁移”导入 |
 
-更新提醒不会自动安装程序。完整程序更新会保留个人设置、GIF、音频、字体和导出文件，并留下上一份程序目录供恢复。桌宠内的更新入口指向本插件仓库，原独立版继续通过自己的仓库更新。
+只有点击更新后才下载安装。后续程序更新不重复下载 GIF、声音和字体，保留全部个人设置与素材。下载中断不会修改现有版本；下次启动清理残留，再次点击更新会重新下载。安装中断或新版启动失败可恢复更新前版本和设置。详见 [更新与恢复](desktop/docs/UPDATES.md)。
+
+桌宠程序与 Harness 连接插件分别管理版本。桌宠程序可独立更新；连接插件仍在 Harness 插件管理中更新。桌宠已是较新版时不会被较旧的插件清单降级。各版本仍使用各自的项目仓库。
 
 ## 保存与换电脑
 
@@ -209,8 +216,8 @@ dsh plugin --profile shorekeeper add dsh-shorekeeper@1.1.2
 - 面向 **Windows 10/11 x64 本机 DeepSeek Harness**；普通 DeepSeek 聊天网页、macOS、Linux 和远程服务器不在本版支持范围。
 - 验证环境为官方 Harness **0.2.1-rc.5**；安装插件后新开始的任务会出现在会话列表，以“DeepSeek 会话”编号显示。
 - “思考”表示任务处理阶段；气泡展示你设置的台词、字幕或已公开的任务进度。
-- 完整程序的实际任务、账户余额和迁移验证，以及本次入口交互测试的具体范围，见 [测试记录](https://github.com/Doya16/dsh-shorekeeper/blob/v1.1.4/docs/VALIDATION.md)。
-- 首次下载完整程序约 213 MiB，无需 Python。下载完成会校验固定 SHA-256；数据与运行范围见 [说明](https://github.com/Doya16/dsh-shorekeeper/blob/v1.1.1/docs/SECURITY.md)。
+- 完整程序的实际任务、账户余额和迁移验证，以及本次入口交互测试的具体范围，见 [测试记录](https://github.com/Doya16/dsh-shorekeeper/blob/v1.2.0/docs/VALIDATION.md)。
+- 首次下载完整程序约 229 MiB，无需 Python。下载完成会校验固定 SHA-256；数据与运行范围见 [说明](https://github.com/Doya16/dsh-shorekeeper/blob/v1.2.0/docs/SECURITY.md)。
 
 ## 素材来源与感谢
 
