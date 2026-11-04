@@ -28,6 +28,7 @@ npm pack
 - `BUILD_INFO.json`：源码提交、源码是否有未提交改动、Python/平台和构建依赖版本。发布使用干净的源码提交；完整便携导出也保留此记录。
 - 构建末尾自动执行 `desktop/tools/verify_portable.py`，在只有 Windows 系统路径的环境中运行 EXE 的 `--verify-package`，检查完整设置、字体、音频解码、动画、额度反馈与迁移相关控件。失败时不进入发布步骤。
 - `tools/package-runtime.py` 生成 `release/Shorekeeper-Windows-v版本.zip`、SHA-256 清单，并把版本、字节数和摘要写入插件的 `runtime-manifest.json`。
+- `desktop/tools/sign_update.py --key 私钥 清单.json` 用离线密钥生成随 Release 上传的 `清单.json.sig`。缺少该文件的版本不能在桌宠内一键安装。私钥不进入仓库，也不随程序发布。
 - npm 包通过 `package.json` 的 `files` 白名单，仅打包 `lib/`、补丁、Logo、语言文件、运行包清单和解压脚本，以及 README、许可和素材说明；不包含 `desktop/` 或账户数据。
 
 发布前应核对完整包的 `BUILD_INFO.json`、SHA-256 清单、插件清单与发布附件一致。源码构建提交与最终插件发布提交可能不同：完整包构建之后才更新其摘要；这两个提交之间不得改变桌宠运行源码。

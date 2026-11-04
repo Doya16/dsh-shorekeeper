@@ -8,7 +8,7 @@
 
 **现在，守岸人来陪你了。**
 
-**v1.2.0**：定时检查新版，无声更新气泡常驻；点击“更新并重启守岸人”即可下载程序更新、保留当前配置和素材并重启。可选“今日不再提醒”；下载或安装中断可恢复。 [更新与恢复](desktop/docs/UPDATES.md)
+**v1.2.1**：一键更新新增发布者签名校验，第三方镜像无法伪造可安装的更新。定时检查新版，无声更新气泡常驻；点击“更新并重启守岸人”即可下载程序更新、保留当前配置和素材并重启。可选“今日不再提醒”；下载或安装中断可恢复。 [更新与恢复](desktop/docs/UPDATES.md)
 
 把《鸣潮》的守岸人带到桌面，陪你工作，也陪你等待。任务进行时换上小表情，完成后用熟悉的语音回应。
 
@@ -173,15 +173,15 @@ dsh plugin --profile shorekeeper add dsh-shorekeeper@1.1.2
 
 ## 检查更新与保留配置升级
 
-<img src="https://raw.githubusercontent.com/Doya16/dsh-shorekeeper/v1.2.0/docs/images/update-notice.png" width="360" alt="无声常驻更新气泡，版本号为示例">
+<img src="https://raw.githubusercontent.com/Doya16/dsh-shorekeeper/v1.2.1/docs/images/update-notice.png" width="360" alt="无声常驻更新气泡，版本号为示例">
 
-![版本与更新设置](https://raw.githubusercontent.com/Doya16/dsh-shorekeeper/v1.2.0/docs/images/update-settings.png)
+![版本与更新设置](https://raw.githubusercontent.com/Doya16/dsh-shorekeeper/v1.2.1/docs/images/update-settings.png)
 
-当前插件与完整程序版本均为 **v1.2.0**。默认启动时和每 6 小时检查一次，可在 **右键桌宠 → 设置 → 版本与更新** 调整为 1–168 小时，或关闭定时检查。
+当前插件与完整程序版本均为 **v1.2.1**。默认启动时和每 6 小时检查一次，可在 **右键桌宠 → 设置 → 版本与更新** 调整为 1–168 小时，或关闭定时检查。
 
 发现新版时出现无声常驻气泡，语音台词暂时覆盖它，台词结束后恢复。点击 **更新并重启守岸人**，或设置中的 **一键更新**，即可下载程序更新、保留当前搭配并重启。**今日不再提醒** 在当天重启后仍然有效。
 
-更新来源可选 **自动选择 / GitHub 官方源 / 镜像加速**。自动模式先尝试 GitHub，连接失败时切换 [GH-Proxy](https://gh-proxy.org/)；固定来源不会悄悄切换。镜像可能有同步延迟。
+更新来源可选 **自动选择 / GitHub 官方源 / 镜像加速**。自动模式先尝试 GitHub，无法取得结果（超时、连接失败或 HTTP 错误）时切换第三方 [GH-Proxy](https://gh-proxy.org/)；固定来源不会悄悄切换。桌宠内更新始终校验发布者签名，校验失败不会安装。镜像可能有同步延迟。
 
 | 当前情况 | 如何操作 |
 | --- | --- |
