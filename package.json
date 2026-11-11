@@ -1,7 +1,7 @@
 {
   "name": "dsh-shorekeeper",
   "description": "B站 400+ 收藏的守岸人桌宠，现在来陪你了。《鸣潮》的守岸人陪你工作，也陪你等待。任务中换表情，完成后用熟悉的语音回应；支持摸头互动、自选表情与语音台词。适用于 Windows x64 本机 DeepSeek Harness，首次下载约 229 MiB 完整程序。",
-  "version": "1.2.3",
+  "version": "1.2.5",
   "author": "Doya16",
   "homepage": "https://github.com/Doya16/dsh-shorekeeper#readme",
   "bugs": {
